@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule,  } from '@angular/core';
+import { NgModule, Directive  } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FileUploadModule, FileUploader } from 'ng2-file-upload';
@@ -45,5 +45,10 @@ const appRoutes: Routes = [
   providers: [],
   bootstrap: [AppComponent]
 })
+
+// class FileSelectDirective
+@Directive({ selector: '[ng2FileSelect]' })
+// class FileDropDirective
+@Directive({ selector: '[ng2FileDrop]' })
 
 export class AppModule { }
