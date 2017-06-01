@@ -12,9 +12,13 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] ="['/']">Home</a></li>
+              <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] ="['/upload-journal']">Upload Journal</a></li>
+              <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] ="['/view-all-journal']">Journals</a></li>
+              <!--<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] ="['/view-journal']">V</a></li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] ="['/login']">Login</a></li>
+              <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] ="['/registration']">Sign Up</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
