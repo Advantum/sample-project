@@ -8,8 +8,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,35 +27,41 @@ import com.medical.journal.model.Journal;
 public class JournalServiceImpl implements JournalService{
 	
 	public static String UPLOAD_PATH = "/folder";
+	@Autowired
+	private JournalRepository journalRepository;
 
 	@Override
-	public String storeFile(MultipartFile file) {
+	public Boolean storeRecord(MultipartFile file, String name, String description) {
 		// TODO Auto-generated method stub
 		try{
 			byte[] bytes = file.getBytes();
-			Path filePath = Paths.get(UPLOAD_PATH + file.getOriginalFilename());
+			String fileUrl = file.getOriginalFilename();
+			Path filePath = Paths.get(UPLOAD_PATH + fileUrl);
 			Files.write(filePath, bytes);
 			
-			return file.getOriginalFilename();
+			Journal newJournal = new Journal(name, description, fileUrl);
+			journalRepository.save(newJournal);
+			return true;
 		} catch(IOException ioEx) {
 			ioEx.printStackTrace();
 		}
+		return false;
 	}
 
 	@Override
 	public Journal getJournalById(String journalId) {
-		// TODO Auto-generated method stub
-		Journal journal = null;
+		Journal journal = journalRepository.findById(journalId);
+		
 		return journal;
 	}
 
 	@Override
-	public List<Journal> getAllJournals() {
-		List<Journal> journalList = new ArrayList<Journal>();
-		Journal j = new Journal( "My nbame", "Description" , "/url to file is here");
-		journalList.add(j);
+	public Map<String, List<Journal>> getAllContent() {
+		List<Journal> journals = journalRepository.findAll();
 		
-		return journalList;
+		Map<String, List<Journal>> response = new HashMap<String, List<Journal>>();
+		response.put("journals", journals);
+		return response;
 	}
 
 }

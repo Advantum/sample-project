@@ -14,7 +14,7 @@ import com.medical.journal.model.Journal;
  *
  */
 public interface JournalRepository extends MongoRepository<Journal, String>{
-	public Journal findByContentId(String id);
+	public Journal findById(String id);
 	public List<Journal> findAll();
 	
 }
