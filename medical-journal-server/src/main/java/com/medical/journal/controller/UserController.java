@@ -1,5 +1,6 @@
 package com.medical.journal.controller;
 
+import com.medical.journal.model.User;
 import com.medical.journal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,11 +24,13 @@ public class UserController {
     public ResponseEntity<?> getAllUsers() {
         return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
     }
+    
+    @RequestMapping(
+    		value = "/registration", 
+    		method = RequestMethod.POST)
+    public User createUser(@RequestBody User user){
+    	userService.createUser(user);
+    	return user;
+    }
 
-//    @RequestMapping(
-//            value = "/user/{id}",
-//            method = RequestMethod.GET)
-//    public ResponseEntity<?> getUser(@PathVariable Long id) {
-//        return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
-//    }
 }
