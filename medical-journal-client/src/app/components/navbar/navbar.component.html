@@ -1,0 +1,25 @@
+<nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" [routerLink] ="['/']">Medical Journal</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] ="['/']">Home</a></li>
+              <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] ="['/upload-journal']">Upload Journal</a></li>
+              <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] ="['/view-all-journal']">Journals</a></li>
+              <!--<li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] ="['/view-journal']">V</a></li>-->
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] ="['/login']">Login</a></li>
+              <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink] ="['/registration']">Sign Up</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
