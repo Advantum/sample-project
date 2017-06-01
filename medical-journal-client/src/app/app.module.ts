@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Directive  } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { FileUploadModule, FileUploader } from 'ng2-file-upload';
 import { RouterModule, Routes } from '@angular/router';
+
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -40,9 +42,16 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
+    FileUploadModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
 })
+
+// class FileSelectDirective
+@Directive({ selector: '[ng2FileSelect]' })
+// class FileDropDirective
+@Directive({ selector: '[ng2FileDrop]' })
+
 export class AppModule { }
