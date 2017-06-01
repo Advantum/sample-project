@@ -3,7 +3,7 @@ import { FileUploader } from 'ng2-file-upload';
 
 
 // const URL = '/api/';
-const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
+const URL = 'http://localhost:4200/upload-journal/assets/journals';
 
 @Component({
   selector: 'app-upload-journal',
