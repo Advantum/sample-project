@@ -15,6 +15,9 @@ import { UploadJournalComponent } from './components/upload-journal/upload-journ
 import { ViewAllJournalComponent } from './components/view-all-journal/view-all-journal.component';
 import { ViewJournalComponent } from './components/view-journal/view-journal.component';
 
+import { UserService } from './services/user.service';
+
+
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'login', component: LoginComponent},
@@ -42,7 +45,7 @@ const appRoutes: Routes = [
     FileUploadModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 
