@@ -5,14 +5,11 @@ import com.medical.journal.model.User;
 import java.util.List;
 
 public interface UserService {
-    List<User> getUsers();
-
-    User getUser(int id);
-
-    void createUser(User user);
-
-	boolean getUserByEmail(String email);
 	
-	User authenticateUser(User user);
+    List<User> getUsers();
+    User getUser(String id);
+    Boolean getUserByEmail(String email);
+    User createUser(User user);
+    User authenticateUser(User user);
     
 }
