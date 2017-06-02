@@ -14,24 +14,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                    <td>Asthma</td>
-                    <td>Asthma occurs from early stage in...  </td>
-                    <td> File Uploaded </td>
-                    <td> Jane Doe</td>
-                    <td> May 12, 2017</td>
-                    <td nowrap>
-                        <button type="button" class="btn btn-warning btn-xs">
-                            <span class="glyphicon glyphicon-upload"></span> Subscribe
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Asthma</td>
-                    <td>Asthma occurs from early stage in...  </td>
-                    <td> Jane Doe</td>
-                    <td> File Uploaded </td>
-                    <td> May 12, 2017</td>
+                <tr *ngFor= "let journal of journals">
+                    <td>{{journal.Name}}</td>
+                    <td>{{journal.Description}} </td>
+                    <td>{{journal.FileUrl}} </td>
+                    <td> {{journal.Publisher}} </td>
+                    <td> {{journal.DatePublished}}</td>
                     <td nowrap>
                         <button type="button" class="btn btn-warning btn-xs">
                             <span class="glyphicon glyphicon-upload"></span> Subscribe
