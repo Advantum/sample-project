@@ -18,13 +18,16 @@ describe('UserService', () => {
 
   describe('getUserByEmail endpoint', () => {  
 
-      it('should return an user', inject([UserService, XHRBackend], (userService, mockBackend) => {
+      it('should return an user when all parameters sent', inject([UserService, XHRBackend], (userService, mockBackend) => {
          const mockResponse = {
           data: [
-            { id: 0, firstname: 'Test', lastname: 'Test', email: 'Test', password: 'Test' , role: 'Publisher' }
+            { id: 'x@x.com', firstname: 'Test', lastname: 'Test', email: 'x@x.com', password: 'Test' , role: 'Publisher' }
           ]
         };
-        const email ="x@x.com"
+        const userPayLoad = {
+          email :"x@x.com"
+        }
+        
 
         mockBackend.connections.subscribe((connection) => {
           connection.mockRespond(new Response(new ResponseOptions({
@@ -32,11 +35,34 @@ describe('UserService', () => {
           })));
         });
         
-        userService.getUserByEmail(email).subscribe((user) => {
-          expect(user.length).toBe(1);
+        userService.getUserByEmail(userPayLoad).subscribe((user) => {
+          expect(user.data.length).toBe(1);
         });
       }));
       
+      it('should not return an user when email param not set', inject([UserService, XHRBackend], (userService, mockBackend) => {
+        
+        const userPayLoad = {
+          name :"x@x.com"
+        }
+        
+
+        mockBackend.connections.subscribe((connection) => {
+          connection.mockError(new Response(new ResponseOptions({
+            body: JSON.stringify({ error: 'Internal Server Error' }),
+            status: 500,
+          })));
+        });
+        
+        userService.getUserByEmail(userPayLoad).subscribe((user) => {
+          console.log(user);
+          expect(user).toBeUndefined();
+        }, err => {
+               expect(err).toBeDefined();
+            });
+      }));
+      
+
     });
 
 });
