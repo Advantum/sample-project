@@ -67,5 +67,4 @@ public class JournalServiceImpl implements JournalService{
 		
 		return journals;
 	}
-
 }

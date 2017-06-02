@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Journal {
 	
 	@Id
-	private String id;
+	private long id;
 	@NotNull
 	private String name;
 	private String description;
@@ -24,10 +24,10 @@ public class Journal {
 		this.user = new User(userId, "", "", "	", "", "");
 	}
 	
-	public String getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	

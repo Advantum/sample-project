@@ -24,9 +24,9 @@ public class UserServiceImpl implements UserService{
 
 	/*@Override
     public User getUser(int id) {
+
         return allUsers.stream().filter(t -> t.getId() == id).findFirst().get(); 
     }*/
-	
 	@Override
 	public User getUser(String id) {
 		return userRepository.findById(id);

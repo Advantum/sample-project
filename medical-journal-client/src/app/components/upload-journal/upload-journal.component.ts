@@ -11,6 +11,7 @@ const URL = 'http://localhost:4200/upload-journal/assets/journals';
   styleUrls: ['./upload-journal.component.css']
 })
 export class UploadJournalComponent implements OnInit {
+
   public uploader:FileUploader = new FileUploader({url: URL});
     public hasBaseDropZoneOver:boolean = false;
     public hasAnotherDropZoneOver:boolean = false;
