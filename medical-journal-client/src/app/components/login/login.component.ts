@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
     this.errorMessage = "";
     this.userService.authenticateUser(JSON.stringify(user)).subscribe(data =>{
       if(data){
-        localStorage.setItem('user', JSON.stringify(data.id));
-        localStorage.setItem('role', JSON.stringify(data.role));
+        localStorage.setItem('user', data.id);
+        localStorage.setItem('role', data.role);
         this.router.navigate(['/']);
       }
     },

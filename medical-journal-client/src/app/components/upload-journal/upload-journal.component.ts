@@ -20,11 +20,14 @@ export class UploadJournalComponent implements OnInit {
 
   ngOnInit() {
     const user = this.userService.getLocalValues();
-    if(user.userRole == 'Publisher'){
+    console.log(user.userRole)
+    if(user.userRole === "Publisher"){
+      console.log("in");
       this.hasPermission = true;
     }else{
       this.hasPermission = false;
     }
+    console.log(this.hasPermission);
   }
 
   fileChange(event) {

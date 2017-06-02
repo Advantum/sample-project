@@ -64,12 +64,12 @@ public class JournalServiceImpl implements JournalService{
 		BufferedOutputStream bs = new BufferedOutputStream(new FileOutputStream(new File(filepath)));
 		bs.write(file.getBytes());
 		
-		Journal journal = new Journal(name, description, filepath, publisher);
+		Journal journal = new Journal(name, name, description, filepath, publisher);
 		
 		return journalRepository.save(journal);
 		
 		} catch(Exception ex) {
-			System.err.print(ex.getStackTrace());
+			System.err.print(ex.getMessage());
 			return null;
 		}
 	}
