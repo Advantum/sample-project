@@ -1,6 +1,7 @@
 export class Journal {
     id: number;
+    name: string;
     description: string;
-    fileUrl: string;
+    file: string;
     publisher: string;
 }
