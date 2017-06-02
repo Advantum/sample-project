@@ -16,6 +16,7 @@ import { ViewAllJournalComponent } from './components/view-all-journal/view-all-
 import { ViewJournalComponent } from './components/view-journal/view-journal.component';
 
 import { UserService } from './services/user.service';
+import { JournalService } from './services/journal.service';
 
 
 const appRoutes: Routes = [
@@ -45,7 +46,7 @@ const appRoutes: Routes = [
     FileUploadModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [UserService],
+  providers: [UserService, JournalService],
   bootstrap: [AppComponent]
 })
 
