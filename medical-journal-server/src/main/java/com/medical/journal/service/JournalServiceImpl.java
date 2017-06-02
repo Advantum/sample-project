@@ -75,17 +75,22 @@ public class JournalServiceImpl implements JournalService{
 	}
 	
 	@Override
-	public Resource getFile(String fileName) throws Exception {
+	public Resource getFile(String journalId) throws Exception {
 		try {
+			
+			Journal journal = journalRepository.findById(journalId);
+			String fileName = journal.getFile();
+			
 			Path filePath = Paths.get(UPLOAD_PATH + fileName);
 			Resource resource = new UrlResource(filePath.toUri());
+			
 			if(resource.exists() || resource.isReadable()) {
 				return resource;
 			} else {
 				throw new Exception("File not found or unable to read file");
 			}
 		} catch (MalformedURLException exception) {
-			throw new Exception("Unable to read the file: " + fileName);
+			throw new Exception("Unable to read the file: " + exception.getMessage());
 		}
 	}
 }

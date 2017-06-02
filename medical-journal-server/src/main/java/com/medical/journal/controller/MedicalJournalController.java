@@ -59,33 +59,33 @@ public class MedicalJournalController {
 	  }
 	
 	
-	@RequestMapping(value="/api/content/{contentId}",
-			method=RequestMethod.GET)
-	public Map<String, Object> getContentById(@PathVariable("contentId") String contentId) {
-		Journal journal = journalService.getJournalById(contentId);
-		
-		Map<String, Object> response = new LinkedHashMap<String, Object>();
-		response.put("value", response);
-		return response;
-	}
+//	@RequestMapping(value="/api/journals/{journalId}",
+//			method=RequestMethod.GET)
+//	public Map<String, Object> getContentById(@PathVariable("journalId") String journalId) {
+//		Journal journal = journalService.getJournalById(journalId);
+//		
+//		Map<String, Object> response = new LinkedHashMap<String, Object>();
+//		response.put("journal", response);
+//		return response;
+//	}
 	
-	@RequestMapping(value="/api/content/file/{fileName}",
+	@RequestMapping(value="/api/journals/{journalId}",
 			method=RequestMethod.GET)
 	@ResponseBody
-	public ResponseEntity<Resource> getFile(@PathVariable("fileName") String fileName ) {
+	public ResponseEntity<Resource> getFile(@PathVariable("journalId") String journalId ) {
 		
 		try{
-			Resource journalFile = journalService.getFile(fileName);
+			Resource journalFile = journalService.getFile(journalId);
 			
 			return ResponseEntity
 						.ok()
 						.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + journalFile.getFilename() + "\"")
 						.body(journalFile); 
 		} catch (Exception e) {
-			System.err.println("Loading file " + fileName + " failed. Reason: " + e.getMessage());
+			System.err.println("Loading file failed. Reason: " + e.getMessage());
 			return null;
-			//return new ResponseEntity<Resource>("Failed to source file: " + e.getMessage(), HttpStatus.NOT_FOUND); 
 		}
 	}
+	
 }
   
