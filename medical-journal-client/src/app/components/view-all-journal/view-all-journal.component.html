@@ -5,21 +5,23 @@
           <table class="table">
               <thead>
                 <tr>
+                    <th>View</th>
                     <th>Name</th>
                     <th>Description</th>
-                    <th>File</th>
                     <th>Publisher</th>
-                    <th>Date Published</th>
                     <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor= "let journal of journals">
+                    <td>
+                        <a class="btn btn-warning btn-xs" href="/api/journals/{{journal.id}}">
+                            <span class="glyphicon glyphicon-upload"></span> Read
+                        </a>
+                    </td>
                     <td>{{journal.name}}</td>
                     <td>{{journal.description}} </td>
-                    <td>{{journal.fileUrl}} </td>
                     <td> {{journal.publisher}} </td>
-                    <td> {{journal.datePublished}}</td>
                     <td nowrap>
                         <button type="button" class="btn btn-warning btn-xs">
                             <span class="glyphicon glyphicon-upload"></span> Subscribe

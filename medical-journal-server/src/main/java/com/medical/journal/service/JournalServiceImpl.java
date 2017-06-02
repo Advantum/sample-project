@@ -34,7 +34,7 @@ import com.medical.journal.model.User;
 @Service
 public class JournalServiceImpl implements JournalService{
 	
-	public static String UPLOAD_PATH = "uploaded-journal/";
+	public static String UPLOAD_PATH = "C://Users/Gavin/Desktop/";
 	
 	@Autowired
 	private JournalRepository journalRepository;
@@ -58,7 +58,7 @@ public class JournalServiceImpl implements JournalService{
 	public Journal createContent(MultipartFile file, String name, String description, String publisher) {
 		try{
 		String fileName = file.getOriginalFilename();
-		String directory = "upload";
+		String directory = UPLOAD_PATH;
 		String filepath = Paths.get(directory, fileName).toString();
 		
 		BufferedOutputStream bs = new BufferedOutputStream(new FileOutputStream(new File(filepath)));

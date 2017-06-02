@@ -3,6 +3,7 @@ import { FileUploader } from 'ng2-file-upload';
 import { Journal } from '../../models/journal';
 import { JournalService } from '../../services/journal.service';
 import { UserService } from '../../services/user.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class UploadJournalComponent implements OnInit {
     public newJournalEntry = new Journal();
     hasPermission: boolean;
   
-  constructor(private journalService: JournalService, private userService: UserService) { }
+  constructor(private journalService: JournalService, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     const user = this.userService.getLocalValues();
@@ -40,7 +41,7 @@ export class UploadJournalComponent implements OnInit {
     formData.append('description', this.newJournalEntry.description);
     formData.append('file', this.newJournalEntry.file);
     this.journalService.saveJournal(formData).subscribe(data =>{
-      console.log(data);
+      this.router.navigate(['/view-all-journal']);
     }, err => {
       console.log(err);
     });
