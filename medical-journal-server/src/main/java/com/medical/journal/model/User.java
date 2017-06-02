@@ -1,9 +1,11 @@
 package com.medical.journal.model;
-
 import javax.validation.constraints.NotNull;
 
-public class User {
+import org.springframework.data.annotation.Id;
 
+
+public class User {
+	@Id
     private int id;
     @NotNull
     private String email;
