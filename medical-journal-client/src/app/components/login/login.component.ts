@@ -23,7 +23,8 @@ export class LoginComponent implements OnInit {
       email: this.email,
       password: this.password
     }
-    this.userService.authenticateUser(user).subscribe(data =>{
+    console.log(user);
+    this.userService.authenticateUser(JSON.stringify(user)).subscribe(data =>{
       console.log(data);
       //localStorage.setItem('user', JSON.stringify(data.id));
       //localStorage.setItem('role', JSON.stringify(data.role));

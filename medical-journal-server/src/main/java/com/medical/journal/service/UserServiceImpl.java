@@ -45,6 +45,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User authenticateUser(User user) {
+		for (User temp : allUsers) {
+			if(temp.getEmail().equals(user.getEmail())){
+				if(temp.getPassword().equals(user.getPassword())){
+					return temp;
+				}
+			}
+		}
 		return null;
 	}
     
