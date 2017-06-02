@@ -71,7 +71,7 @@ public class MedicalJournalController {
 	@RequestMapping(
 	          value = "/api/journals",
 	          method = RequestMethod.POST)
-	  public ResponseEntity<?> getAllJournals(@RequestParam("file") MultipartFile file, @RequestBody Journal journal) {
+	  public ResponseEntity<?> getAllJournals(@RequestPart("file") MultipartFile file, @RequestPart(required=true) Journal journal) {
 	      return new ResponseEntity<>(journalService.createContent(file, journal), HttpStatus.OK);
 	  }
 	
