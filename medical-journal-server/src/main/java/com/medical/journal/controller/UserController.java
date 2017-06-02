@@ -33,11 +33,19 @@ public class UserController {
     	return user;
     }
 
-//    @RequestMapping(
-//            value = "/user/{email}",
-//            method = RequestMethod.GET)
-//    public ResponseEntity<?> getUserByEmail(@PathVariable String email) {
-//        return new ResponseEntity<>(userService.findUserByEmail(email), HttpStatus.OK);
-//    }
+    @RequestMapping(
+            value = "/user/{email}",
+            method = RequestMethod.GET)
+    public ResponseEntity<?> getUserByEmail(@PathVariable String email) {
+        return new ResponseEntity<>(userService.getUserByEmail(email), HttpStatus.OK);
+    }
 
+    @RequestMapping(
+    		value = "/login",
+    		method = RequestMethod.POST)
+    public User authenticateUser(@RequestBody User user){
+    	//userService.authenticateUser(user);
+    	return user;
+    }
+    
 }
