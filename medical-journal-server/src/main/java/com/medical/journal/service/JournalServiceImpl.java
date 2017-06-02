@@ -3,6 +3,9 @@
  */
 package com.medical.journal.service;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -16,6 +19,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -51,9 +56,22 @@ public class JournalServiceImpl implements JournalService{
 	
 	@Override 
 	public Journal createContent(MultipartFile file, String name, String description, String publisher) {
-		Journal journal = new Journal(name, description, file, publisher);
+		try{
+		String fileName = file.getOriginalFilename();
+		String directory = "upload";
+		String filepath = Paths.get(directory, fileName).toString();
+		
+		BufferedOutputStream bs = new BufferedOutputStream(new FileOutputStream(new File(filepath)));
+		bs.write(file.getBytes());
+		
+		Journal journal = new Journal(name, description, filepath, publisher);
 		
 		return journalRepository.save(journal);
+		
+		} catch(Exception ex) {
+			System.err.print(ex.getStackTrace());
+			return null;
+		}
 	}
 	
 	@Override

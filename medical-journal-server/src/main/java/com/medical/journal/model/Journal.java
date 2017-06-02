@@ -19,14 +19,14 @@ public class Journal {
 	@NotNull
 	private String name;
 	private String description;
-	private MultipartFile file;
+	private String file;
 	private String publisher;
 	
 	
 	public Journal(){
 		
 	}
-	public Journal(String name, String description, MultipartFile file, String publisher) {
+	public Journal(String name, String description, String file, String publisher) {
 		//this.id = name;
 		this.name = name;
 		this.description = description;
@@ -61,10 +61,10 @@ public class Journal {
 		this.description = description;
 	}
 	
-	public MultipartFile getFile() {
+	public String getFile() {
 		return file;
 	}
-	public void setFile(MultipartFile file) {
+	public void setFile(String file) {
 		this.file = file;
 	}
 	
