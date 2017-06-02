@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Document(collection="journal")
@@ -14,19 +15,19 @@ public class Journal {
 	@NotNull
 	private String name;
 	private String description;
-	private String fileUrl;
-	private String user;
+	private MultipartFile file;
+	private String publisher;
 	
 	
 	public Journal(){
 		
 	}
-	public Journal(String name, String description, String fileUrl, String user) {
+	public Journal(String name, String description, MultipartFile file, String publisher) {
 		//this.id = name;
 		this.name = name;
 		this.description = description;
-		this.fileUrl = fileUrl;
-		this.user = user;
+		this.file = file;
+		this.publisher = publisher;
 	}
 	
 	public String getId() {
@@ -42,11 +43,11 @@ public class Journal {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public void setUser(String user){
-		this.user = user;
+	public void setPublisher(String publisher){
+		this.publisher = publisher;
 	}
-	public String getUSer(){
-		return this.user;
+	public String getPublisher(){
+		return this.publisher;
 	}
 	
 	public String getDescription() {
@@ -56,15 +57,15 @@ public class Journal {
 		this.description = description;
 	}
 	
-	public String getFileUrl() {
-		return fileUrl;
+	public MultipartFile getFile() {
+		return file;
 	}
-	public void setFileUrl(String fileUrl) {
-		this.fileUrl = fileUrl;
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 	
 	@Override
 	public String toString() {
-		return String.format("Journal[Id=%s, name=%s, description=%s, fileUrl=%s]", id, name, description, fileUrl);
+		return String.format("Journal[Id=%s, name=%s, description=%s]", id, name, description);
 	}
 }

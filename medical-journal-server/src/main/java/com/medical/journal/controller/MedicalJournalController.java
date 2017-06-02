@@ -32,6 +32,25 @@ public class MedicalJournalController {
 	}
 	
 	
+	@RequestMapping(value="/api/content", 
+			method=RequestMethod.GET)
+	public ResponseEntity<?> getContents() {
+		
+		return new ResponseEntity<>(journalService.getAllContent(), HttpStatus.OK);		
+	}
+	
+	/**
+	 * Get all the Journals in the system.
+	 * @return List of Journals
+	 */
+	@RequestMapping(
+	          value = "/api/journals",
+	          method = RequestMethod.GET)
+	  public ResponseEntity<?> getAllJournals() {
+	      return new ResponseEntity<>(journalService.getAllContent(), HttpStatus.OK);
+	  }
+	
+	
 	/**
 	 * TODO: Add Validation to ensure files are valid.
 	 * @param file
@@ -42,38 +61,18 @@ public class MedicalJournalController {
 	 */
 	@RequestMapping(value="/api/upload",
 			method=RequestMethod.POST)
-	public String handleFileUpload(@RequestParam("file") MultipartFile file/*, @RequestBody String name, @RequestBody String description,
-						@RequestBody String userId*/) {
+	public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file, @RequestBody Journal journal) {
 		
 		System.out.println("File incoming"+ file.getSize());
-		//journalService.storeRecord(file/*, name, description, userId */);
-		return "Yes";
-	}
-	
-	/**
-	 * Get all the Journals in the system.
-	 * @return List of Journals
-	 */
-	@RequestMapping(value="/api/content", 
-			method=RequestMethod.GET)
-	public ResponseEntity<?> getContents() {
-		
-		return new ResponseEntity<>(journalService.getAllContent(), HttpStatus.OK);
+		return new ResponseEntity<>(journalService.createContent(file, journal), HttpStatus.OK);
 		
 	}
-	
-	@RequestMapping(
-	          value = "/api/journals",
-	          method = RequestMethod.GET)
-	  public ResponseEntity<?> getAllJournals() {
-	      return new ResponseEntity<>(journalService.getAllContent(), HttpStatus.OK);
-	  }
 	
 	@RequestMapping(
 	          value = "/api/journals",
 	          method = RequestMethod.POST)
-	  public ResponseEntity<?> getAllJournals(@RequestBody Journal journal) {
-	      return new ResponseEntity<>(journalService.createContent(journal), HttpStatus.OK);
+	  public ResponseEntity<?> getAllJournals(@RequestParam("file") MultipartFile file, @RequestBody Journal journal) {
+	      return new ResponseEntity<>(journalService.createContent(file, journal), HttpStatus.OK);
 	  }
 	
 	

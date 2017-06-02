@@ -29,45 +29,11 @@ import com.medical.journal.model.User;
 @Service
 public class JournalServiceImpl implements JournalService{
 	
-	public static String UPLOAD_PATH = "folder";
+	public static String UPLOAD_PATH = "uploaded-journal/";
 	
 	@Autowired
 	private JournalRepository journalRepository;
 	
-	
-	@Override
-	public void init() {
-		try {
-			Path dirPath = Paths.get(UPLOAD_PATH);
-			Files.createDirectory(dirPath);
-		} catch (IOException ex) {
-			System.out.println("Unable to create folder");
-		}
-	}
-	
-	@Override
-	public Journal storeRecord(MultipartFile file/*, String name, String description, String strUserId*/) {
-		// TODO Auto-generated method stub
-		try{
-			init();
-			
-			byte[] bytes = file.getBytes();
-			String fileUrl = file.getOriginalFilename();
-			Path filePath = Paths.get(UPLOAD_PATH + fileUrl);
-			Files.write(filePath, bytes);
-			
-			//TODO Include Logic to connect user
-			//int userId = Integer.valueOf(strUserId);
-			
-			//Journal newJournal = new Journal(name, description, fileUrl, userId);
-			//return journalRepository.save(newJournal);
-			
-		} catch(IOException ioEx) {
-			ioEx.printStackTrace();
-		}
-		return null;
-		
-	}
 
 	@Override
 	public Journal getJournalById(String journalId) {
@@ -84,8 +50,9 @@ public class JournalServiceImpl implements JournalService{
 	}
 	
 	@Override 
-	public Journal createContent(Journal journal) {
-		System.out.print("Journal object: " + journal.toString());
+	public Journal createContent(MultipartFile file, Journal journal) {
+		journal.setFile(file);
+		
 		return journalRepository.save(journal);
 	}
 	
