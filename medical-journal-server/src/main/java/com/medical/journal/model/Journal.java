@@ -10,14 +10,15 @@ public class Journal {
 	private String name;
 	private String description;
 	private String fileUrl;
+	private User user;
 	
-	public Journal(String id, String name, String description, String fileUrl) {
+	public Journal(String id, String name, String description, String fileUrl, int userId) {
 		
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.fileUrl = fileUrl;
-				
+		this.user = new User(userId, "", "", "", "", "");
 	}
 	
 	public String getId() {
