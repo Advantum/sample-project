@@ -84,7 +84,7 @@ public class MedicalJournalController {
 		Journal journal = journalService.getJournalById(contentId);
 		
 		Map<String, Object> response = new LinkedHashMap<String, Object>();
-		response.put("value", journal);
+		response.put("value", response);
 		return response;
 	}
 	

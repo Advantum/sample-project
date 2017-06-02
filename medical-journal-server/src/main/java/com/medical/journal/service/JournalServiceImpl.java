@@ -27,6 +27,7 @@ import com.medical.journal.model.Journal;
 public class JournalServiceImpl implements JournalService{
 	
 	public static String UPLOAD_PATH = "/folder";
+	
 	@Autowired
 	private JournalRepository journalRepository;
 

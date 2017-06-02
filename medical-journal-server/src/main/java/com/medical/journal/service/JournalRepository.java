@@ -14,8 +14,8 @@ import com.medical.journal.model.Journal;
  * @author linux-dev
  *
  */
-public interface JournalRepository extends MongoRepository<Journal, String>{
-	//public Journal findById(String id);
-	//public List<Journal> findAll();
+public interface JournalRepository extends CrudRepository<Journal, String>{
+	public Journal findById(String id);
+	public List<Journal> findAll();
 	
 }

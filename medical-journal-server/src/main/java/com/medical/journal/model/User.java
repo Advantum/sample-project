@@ -2,6 +2,9 @@ package com.medical.journal.model;
 
 import javax.validation.constraints.NotNull;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection="users")
 public class User {
 
     private int id;
