@@ -10,5 +10,9 @@ public interface UserService {
     User getUser(int id);
 
     void createUser(User user);
+
+	boolean getUserByEmail(String email);
+	
+	User authenticateUser(User user);
     
 }

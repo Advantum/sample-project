@@ -11,33 +11,30 @@ import {Router} from '@angular/router';
 export class RegistrationComponent implements OnInit {
 
   public newUser = new User();
+  errorMessage: String;
 
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    this.newUser.email= "x@x.com";
-    this.newUser.firstname= "Gavin";
-    this.newUser.lastname="Price";
-    this.newUser.password="test";
     this.newUser.id=3;
+    this.errorMessage = "";
   }
   //This function grabs the newUser model from the form and submits 
   //it to the service and handles the response displayed on the view.
   registerUser() {
     //TODO: Validate the inputs
+    this.errorMessage = "";
     this.userService.getUserByEmail(this.newUser).subscribe(data =>{
-      console.log(data.present);
-      console.log(this.newUser);
-      if(!data.present){
-          // this.userService.registerUser(this.newUser).subscribe(data =>{
-          //   if(data){
-          //     this.router.navigate(['/login']);
-          //   }else{
-          //     console.log("failed");
-          //   }
-          // });
+      if(!data){
+          this.userService.registerUser(this.newUser).subscribe(data =>{
+            if(data){
+              this.router.navigate(['/login']);
+            }else{
+              this.errorMessage = "An Error Occured";
+            }
+          });
       }else{
-        console.log("User Already Exists");
+        this.errorMessage = "User Already Exists";
       }
     });
   }

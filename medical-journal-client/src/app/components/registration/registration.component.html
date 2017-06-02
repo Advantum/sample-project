@@ -5,6 +5,9 @@
 
     <form #registrationForm="ngForm" (ngSubmit)="registerUser()" class="form-horizontal">
       <div class="form-group">
+        <label for="inputFirstName" class="col-lg-4 control-label">{{errorMessage}}</label>
+      </div>
+      <div class="form-group">
         <label for="inputFirstName" class="col-lg-2 control-label">First Name</label>
         <div class="col-lg-4">
           <input type="text" class="form-control" id="inputFirstName" name="inputFirstName" placeholder="First Name" [(ngModel)]="newUser.firstname">

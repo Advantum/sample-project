@@ -1,8 +1,13 @@
 <div class="auth-main">
   <div class="auth-block">
 
-    <form class="form-signin">
+    <form class="form-signin" (ngSubmit)="onLogin()">
         <h2 class="form-signin-heading">Sign In</h2>
+
+        <div class="form-group">
+          <label for="inputFirstName" class="col-lg-4 control-label">{{errorMessage}}</label>
+        </div>
+
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
