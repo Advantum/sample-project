@@ -31,7 +31,10 @@ public class MedicalJournalController {
 		this.journalService = journalService;
 	}
 	
-	
+	/**
+	 * Get the content for each journals
+	 * @return
+	 */
 	@RequestMapping(value="/api/content", 
 			method=RequestMethod.GET)
 	public ResponseEntity<?> getContents() {
@@ -50,6 +53,13 @@ public class MedicalJournalController {
 	      return new ResponseEntity<>(journalService.getAllContent(), HttpStatus.OK);
 	  }
 	
+	/**
+	 * Create the new journal
+	 * @param file
+	 * @param name
+	 * @param description
+	 * @return
+	 */
 	
 	@RequestMapping(
 	          value = "/api/journals",
@@ -69,6 +79,11 @@ public class MedicalJournalController {
 //		return response;
 //	}
 	
+	/**
+	 * View a journal based on the journal id
+	 * @param journalId
+	 * @return
+	 */
 	@RequestMapping(value="/api/journals/{journalId}",
 			method=RequestMethod.GET)
 	@ResponseBody

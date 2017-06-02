@@ -39,7 +39,10 @@ public class JournalServiceImpl implements JournalService{
 	@Autowired
 	private JournalRepository journalRepository;
 	
-
+	
+	/**
+	 * Get the journal based on the journal Id
+	 */
 	@Override
 	public Journal getJournalById(String journalId) {
 		Journal journal = journalRepository.findOne(journalId);
@@ -54,6 +57,9 @@ public class JournalServiceImpl implements JournalService{
 		return journals;
 	}
 	
+	/**
+	 * Create the content and move the file to the respective location.
+	 */
 	@Override 
 	public Journal createContent(MultipartFile file, String name, String description, String publisher) {
 		try{
@@ -64,16 +70,19 @@ public class JournalServiceImpl implements JournalService{
 		BufferedOutputStream bs = new BufferedOutputStream(new FileOutputStream(new File(filepath)));
 		bs.write(file.getBytes());
 		
-		Journal journal = new Journal(name, description, filepath, publisher);
+		Journal journal = new Journal(name, name, description, filepath, publisher);
 		
 		return journalRepository.save(journal);
 		
 		} catch(Exception ex) {
-			System.err.print(ex.getStackTrace());
+			System.err.print(ex.getMessage());
 			return null;
 		}
 	}
 	
+	/**
+	 * Extract the file and return it to the calling function
+	 */
 	@Override
 	public Resource getFile(String journalId) throws Exception {
 		try {

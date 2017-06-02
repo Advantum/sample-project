@@ -10,7 +10,11 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-
+/**
+ * The Journal model template object
+ * @author linux-dev
+ *
+ */
 @Document(collection="journal")
 public class Journal {
 	
@@ -26,8 +30,8 @@ public class Journal {
 	public Journal(){
 		
 	}
-	public Journal(String name, String description, String file, String publisher) {
-		//this.id = name;
+	public Journal(String id, String name, String description, String file, String publisher) {
+		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.file = file;

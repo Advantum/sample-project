@@ -32,62 +32,58 @@ public class UserTest {
 
 	@Test
 	public void testSetId() {
-		fail("Not yet implemented");
+		assertEquals(this.aUser.getId(), "myemail@gmail.com");
 	}
 
 	@Test
 	public void testGetEmail() {
-		fail("Not yet implemented");
+		assertEquals(this.aUser.getEmail(), "myemail@gmail.com");
 	}
 
 	@Test
 	public void testSetEmail() {
-		fail("Not yet implemented");
+		aUser.setEmail("newemail");
+		assertEquals(this.aUser.getEmail(), "newemail");
 	}
 
 	@Test
 	public void testGetPassword() {
-		fail("Not yet implemented");
+		assertEquals(aUser.getPassword(), "mypassword");
 	}
 
-	@Test
-	public void testSetPassword() {
-		fail("Not yet implemented");
-	}
+
 
 	@Test
 	public void testGetFirstname() {
-		fail("Not yet implemented");
+		assertEquals(aUser.getFirstname(), "myfirstname");
 	}
 
 	@Test
 	public void testSetFirstname() {
-		fail("Not yet implemented");
+		aUser.setFirstname("myname");
+		assertEquals(aUser.getFirstname(), "myname");
 	}
 
 	@Test
 	public void testGetLastname() {
-		fail("Not yet implemented");
+		assertEquals(aUser.getLastname(), "mylastname");
 	}
 
 	@Test
 	public void testSetLastname() {
-		fail("Not yet implemented");
+		aUser.setLastname("newlastname");
+		assertEquals(aUser.getLastname(), "newlastname");
 	}
 
 	@Test
 	public void testGetRole() {
-		fail("Not yet implemented");
+		assertEquals(aUser.getRole(), "newRole");
 	}
 
 	@Test
 	public void testSetRole() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testToString() {
-		fail("Not yet implemented");
+		aUser.setRole("theOldRole");
+		assertEquals(aUser.getRole(), "theOldRole");
 	}
 
 }
