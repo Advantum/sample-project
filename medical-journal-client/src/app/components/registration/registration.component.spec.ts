@@ -1,13 +1,30 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegistrationComponent } from './registration.component';
+import { NgModule }      from '@angular/core';
+import { FormsModule }   from '@angular/forms';
+import { UserService } from '../../services/user.service';
+import { HttpModule } from '@angular/http';
+import { RouterModule, Routes } from '@angular/router';
+import {APP_BASE_HREF} from '@angular/common';
 
 describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
   let fixture: ComponentFixture<RegistrationComponent>;
 
+  const appRoutes: Routes = [
+  { path: 'register', component: RegistrationComponent}
+];
+
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        FormsModule,
+        HttpModule,
+        RouterModule.forRoot(appRoutes)
+      ],
+      providers: [UserService, {provide: APP_BASE_HREF, useValue : '/' }],
       declarations: [ RegistrationComponent ]
     })
     .compileComponents();
