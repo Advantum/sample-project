@@ -13,8 +13,8 @@ import com.medical.journal.model.User;
 public class UserServiceImpl implements UserService {
 	
 	private List<User> allUsers = new ArrayList<>(Arrays.asList(
-			new User(1, "email@test", "pass", "firstname", "lastname"),
-			new User(2, "email1@test", "pass1", "firstname1", "lastname1")
+			new User(1, "email@test", "pass", "firstname", "lastname", ""),
+			new User(2, "email1@test", "pass1", "firstname1", "lastname1", "")
 			));
 	
 

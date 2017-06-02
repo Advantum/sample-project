@@ -25,14 +25,21 @@ export class RegistrationComponent implements OnInit {
   //it to the service and handles the response displayed on the view.
   registerUser() {
     //TODO: Validate the inputs
-  this.userService.registerUser(this.newUser).subscribe(data =>{
-      if(data){
-        console.log(data);
-        this.router.navigate(['/login']);
+    this.userService.getUserByEmail(this.newUser).subscribe(data =>{
+      console.log(data.present);
+      console.log(this.newUser);
+      if(!data.present){
+          // this.userService.registerUser(this.newUser).subscribe(data =>{
+          //   if(data){
+          //     this.router.navigate(['/login']);
+          //   }else{
+          //     console.log("failed");
+          //   }
+          // });
       }else{
-        console.log("failed");
+        console.log("User Already Exists");
       }
-    })
+    });
   }
 }
 

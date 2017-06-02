@@ -24,13 +24,20 @@ public class UserController {
     public ResponseEntity<?> getAllUsers() {
         return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
     }
-    
+
     @RequestMapping(
-    		value = "/registration", 
+    		value = "/registration",
     		method = RequestMethod.POST)
     public User createUser(@RequestBody User user){
     	userService.createUser(user);
     	return user;
     }
+
+//    @RequestMapping(
+//            value = "/user/{email}",
+//            method = RequestMethod.GET)
+//    public ResponseEntity<?> getUserByEmail(@PathVariable String email) {
+//        return new ResponseEntity<>(userService.findUserByEmail(email), HttpStatus.OK);
+//    }
 
 }
