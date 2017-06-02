@@ -12,7 +12,8 @@ export class JournalService {
 
   saveJournal(journal){
     let headers = new Headers();
-    headers.append('Content-Type', 'multipart/form-data');
+    //headers.append('Content-Type', 'multipart/form-data;boundary=------');
+    headers.append('Accept', 'application/json');
     return this.http.post('http://localhost:4200/api/journals', journal, {headers: headers})
     .map(res => res.json());
   }

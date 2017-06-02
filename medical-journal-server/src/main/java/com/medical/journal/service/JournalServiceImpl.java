@@ -50,8 +50,8 @@ public class JournalServiceImpl implements JournalService{
 	}
 	
 	@Override 
-	public Journal createContent(MultipartFile file, Journal journal) {
-		journal.setFile(file);
+	public Journal createContent(MultipartFile file, String name, String description, String publisher) {
+		Journal journal = new Journal(name, description, file, publisher);
 		
 		return journalRepository.save(journal);
 	}

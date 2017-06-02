@@ -51,28 +51,11 @@ public class MedicalJournalController {
 	  }
 	
 	
-	/**
-	 * TODO: Add Validation to ensure files are valid.
-	 * @param file
-	 * @param name
-	 * @param description
-	 * @param redirectAttr
-	 * @return
-	 */
-	@RequestMapping(value="/api/upload",
-			method=RequestMethod.POST)
-	public ResponseEntity<?> handleFileUpload(@RequestParam("file") MultipartFile file, @RequestBody Journal journal) {
-		
-		System.out.println("File incoming"+ file.getSize());
-		return new ResponseEntity<>(journalService.createContent(file, journal), HttpStatus.OK);
-		
-	}
-	
 	@RequestMapping(
 	          value = "/api/journals",
-	          method = RequestMethod.POST)
-	  public ResponseEntity<?> getAllJournals(@RequestPart("file") MultipartFile file, @RequestPart(required=true) Journal journal) {
-	      return new ResponseEntity<>(journalService.createContent(file, journal), HttpStatus.OK);
+	          method = RequestMethod.POST, consumes={"multipart/form-data"})
+	  public ResponseEntity<?> getAllJournals(@RequestParam("file") MultipartFile file, @RequestParam("name") String name, @RequestParam("description") String description) {
+	      return new ResponseEntity<>(journalService.createContent(file, name, description, ""), HttpStatus.OK);
 	  }
 	
 	

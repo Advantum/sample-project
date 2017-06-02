@@ -12,7 +12,7 @@ import com.medical.journal.model.Journal;
 public interface JournalService {
 	Journal getJournalById(String journalId);
 	List<Journal> getAllContent();
-	Journal createContent(MultipartFile file, Journal journal);
+	Journal createContent(MultipartFile file, String name, String description, String publisher);
 	Resource getFile(String fileName) throws Exception;
 	
 }
