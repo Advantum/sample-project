@@ -70,9 +70,10 @@ public class MedicalJournalController {
 			method=RequestMethod.GET, 
 			consumes="application/json", 
 			produces="application/json")
-	public @ResponseBody Map<String, List<Journal>> getContents() {
+	public String getContents() {
 		
-		return journalService.getAllContent();
+		System.out.println(journalService.getAllContent().toString());
+		return journalService.getAllContent().toString();
 		
 	}
 	

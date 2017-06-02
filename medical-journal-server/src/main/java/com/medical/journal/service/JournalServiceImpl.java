@@ -50,14 +50,16 @@ public class JournalServiceImpl implements JournalService{
 
 	@Override
 	public Journal getJournalById(String journalId) {
-		Journal journal = journalRepository.findById(journalId);
+		journalRepository.save(new Journal("Name", "Description of journal", "fileUrl"));
+		
+		Journal journal = journalRepository.findOne(journalId);
 		
 		return journal;
 	}
 
 	@Override
 	public Map<String, List<Journal>> getAllContent() {
-		List<Journal> journals = journalRepository.findAll();
+		List<Journal> journals = (List<Journal>) journalRepository.findAll();
 		
 		Map<String, List<Journal>> response = new HashMap<String, List<Journal>>();
 		response.put("journals", journals);
