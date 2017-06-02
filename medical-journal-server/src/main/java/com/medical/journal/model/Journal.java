@@ -2,29 +2,32 @@ package com.medical.journal.model;
 
 import javax.validation.constraints.NotNull;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+
+@Document(collection="journal")
 public class Journal {
 	
-	@NotNull
-	private int id;
+	@Id
+	private long id;
 	@NotNull
 	private String name;
 	private String description;
 	private String fileUrl;
 	private User user;
 	
-	public Journal(int id, String name, String description, String fileUrl, int userId) {
-		
-		this.id = id;
+	public Journal(String name, String description, String fileUrl, int userId) {
 		this.name = name;
 		this.description = description;
 		this.fileUrl = fileUrl;
-		this.user = new User(userId, "", "", "", "", "");
+		this.user = new User(userId, "", "", "	", "", "");
 	}
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	
@@ -49,4 +52,8 @@ public class Journal {
 		this.fileUrl = fileUrl;
 	}
 	
+	@Override
+	public String toString() {
+		return String.format("Journal[Id=%s, name=%s, description=%s, fileUrl=%s]", id, name, description, fileUrl);
+	}
 }
