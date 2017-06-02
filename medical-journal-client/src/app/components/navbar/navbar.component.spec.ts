@@ -6,6 +6,9 @@ import { NgModule }      from '@angular/core';
  import { FormsModule }   from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import {APP_BASE_HREF} from '@angular/common';
+import { UserService } from '../../services/user.service';
+import { HttpModule } from '@angular/http';
+
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -18,9 +21,10 @@ describe('NavbarComponent', () => {
     TestBed.configureTestingModule({
        imports: [
          FormsModule,
+         HttpModule,
         RouterModule.forRoot(appRoutes)
       ],
-      providers: [{provide: APP_BASE_HREF, useValue : '/' }],
+      providers: [UserService, {provide: APP_BASE_HREF, useValue : '/' }],
       declarations: [ NavbarComponent,
       LoginComponent ]
     })

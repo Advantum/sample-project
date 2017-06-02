@@ -14,6 +14,7 @@ export class ViewJournalComponent implements OnInit {
     // subscribe to router params event
     this.activatedRoute.params.subscribe((params: Params) => {
         let journalId = params['id'];
+        //TODO: Make service call to retrieve pdf
         console.log(journalId);
       });
   }

@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit {
     this.errorMessage = "";
   }
 
+  //This function will authenticate a user and add information to local storage
+  //TODO: Add tokens
   onLogin(){
     const user = {
       email: this.email,
@@ -40,6 +42,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
+//on logout we clear the local storage
   onLogout(){
     localStorage.clear();
   }
