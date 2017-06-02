@@ -5,6 +5,8 @@ package com.medical.journal.service;
 
 import java.util.List;
 
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.CrudRepository;
 
