@@ -16,7 +16,7 @@ export class RegistrationComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    this.newUser.id=3;
+    
     this.errorMessage = "";
   }
   //This function grabs the newUser model from the form and submits 
@@ -24,17 +24,13 @@ export class RegistrationComponent implements OnInit {
   registerUser() {
     //TODO: Validate the inputs
     this.errorMessage = "";
-    this.userService.getUserByEmail(this.newUser).subscribe(data =>{
-      if(!data){
-          this.userService.registerUser(this.newUser).subscribe(data =>{
-            if(data){
-              this.router.navigate(['/login']);
-            }else{
-              this.errorMessage = "An Error Occured";
-            }
-          });
-      }else{
-        this.errorMessage = "User Already Exists";
+      this.userService.registerUser(this.newUser).subscribe(data =>{
+        if(data){
+          this.router.navigate(['/login']);
+        }
+      }, err => {
+      if(err){
+        this.errorMessage = "User already exists!";
       }
     });
   }

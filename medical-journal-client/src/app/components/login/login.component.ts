@@ -12,10 +12,11 @@ export class LoginComponent implements OnInit {
   
   email: String;
   password: String;
-
+  errorMessage: String;
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
+    this.errorMessage = "";
   }
 
   onLogin(){
@@ -23,12 +24,20 @@ export class LoginComponent implements OnInit {
       email: this.email,
       password: this.password
     }
-    console.log(user);
+    this.errorMessage = "";
     this.userService.authenticateUser(JSON.stringify(user)).subscribe(data =>{
-      console.log(data);
-      //localStorage.setItem('user', JSON.stringify(data.id));
-      //localStorage.setItem('role', JSON.stringify(data.role));
-    });
+      if(data){
+        localStorage.setItem('user', JSON.stringify(data.id));
+        localStorage.setItem('role', JSON.stringify(data.role));
+        this.router.navigate(['/']);
+      }
+    },
+    err => {
+      if(err){
+        this.errorMessage = err.statusText;
+      }
+    }
+    );
   }
 
   onLogout(){

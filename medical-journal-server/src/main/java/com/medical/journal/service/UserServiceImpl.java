@@ -6,7 +6,8 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.medical.journal.model.User;
@@ -54,14 +55,16 @@ public class UserServiceImpl implements UserService{
 	 }
 	 
 	 @Override
-	 public User authenticateUser(User user) {
-		for (User temp : userRepository.findAll() ) {
-			if(temp.getEmail().equals(user.getEmail())){
-				if(temp.getPassword().equals(user.getPassword())){
-					return temp;
-				}
+	 public ResponseEntity<User> authenticateUser(User user) {
+		 User temp = userRepository.findByEmail(user.getEmail());
+		 if(temp == null) {
+			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+		} else {
+			if(temp.getPassword().equals(user.getPassword())){
+				return new ResponseEntity<User>(temp, HttpStatus.OK);
+			}else{
+				return new ResponseEntity<User>(HttpStatus.UNAUTHORIZED);
 			}
 		}
-		return null;
 	}
 }
