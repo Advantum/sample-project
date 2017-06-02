@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {Router, ActivatedRoute, Params} from '@angular/router';
 import { ViewJournalComponent } from './view-journal.component';
 
 describe('ViewJournalComponent', () => {
@@ -8,6 +8,9 @@ describe('ViewJournalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+         Router
+      ],
       declarations: [ ViewJournalComponent ]
     })
     .compileComponents();

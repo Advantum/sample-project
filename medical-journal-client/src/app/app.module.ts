@@ -25,7 +25,7 @@ const appRoutes: Routes = [
   { path: 'registration', component: RegistrationComponent},
   { path: 'upload-journal', component: UploadJournalComponent},
   { path: 'view-all-journal', component: ViewAllJournalComponent},
-  { path: 'view-journal', component: ViewJournalComponent}
+  { path: 'view-journal/:id', component: ViewJournalComponent}
 ];
 
 @NgModule({

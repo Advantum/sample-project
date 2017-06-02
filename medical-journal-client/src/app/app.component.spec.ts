@@ -5,6 +5,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import {APP_BASE_HREF} from '@angular/common';
+import { UserService } from './services/user.service';
+import { HttpModule } from '@angular/http';
+
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent}
@@ -14,9 +17,10 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpModule,
         RouterModule.forRoot(appRoutes)
       ],
-       providers: [{provide: APP_BASE_HREF, useValue : '/' }],
+       providers: [UserService, {provide: APP_BASE_HREF, useValue : '/' }],
       declarations: [
         AppComponent,
         NavbarComponent,

@@ -30,7 +30,7 @@ export class UserService {
     return this.http.post('http://localhost:4200/api/login', user, {headers: headers})
     .map(res => res.json());
   }
-
+  //This gets the logal storage information and returns a authUSer object
   getLocalValues(){
     const id = localStorage.getItem("user");
     const role = localStorage.getItem("role");
@@ -39,6 +39,16 @@ export class UserService {
       userRole : role
     }
     return authUser;
+  }
+  
+//Function checks local storage if user logged in
+  isLoggedIn(){
+    let user = this.getLocalValues();
+    if(user.userId && user.userRole){
+      return true;
+    }else{
+      return false;
+    }
   }
 
 }

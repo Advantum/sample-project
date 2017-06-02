@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit {
     this.errorMessage = "";
   }
 
+  //This function will authenticate a user and add information to local storage
+  //TODO: Add tokens
   onLogin(){
     const user = {
       email: this.email,
@@ -27,8 +29,8 @@ export class LoginComponent implements OnInit {
     this.errorMessage = "";
     this.userService.authenticateUser(JSON.stringify(user)).subscribe(data =>{
       if(data){
-        localStorage.setItem('user', JSON.stringify(data.id));
-        localStorage.setItem('role', JSON.stringify(data.role));
+        localStorage.setItem('user', data.id);
+        localStorage.setItem('role', data.role);
         this.router.navigate(['/']);
       }
     },
@@ -40,6 +42,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
+//on logout we clear the local storage
   onLogout(){
     localStorage.clear();
   }
