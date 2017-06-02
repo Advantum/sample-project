@@ -10,24 +10,29 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Journal {
 	
 	@Id
-	private long id;
+	private String id;
 	@NotNull
 	private String name;
 	private String description;
 	private String fileUrl;
-	private User user;
+	private String user;
 	
-	public Journal(String name, String description, String fileUrl, int userId) {
+	
+	public Journal(){
+		
+	}
+	public Journal(String name, String description, String fileUrl, String user) {
+		//this.id = name;
 		this.name = name;
 		this.description = description;
 		this.fileUrl = fileUrl;
-		this.user = new User(userId, "", "", "	", "", "");
+		this.user = user;
 	}
 	
-	public long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
@@ -36,6 +41,12 @@ public class Journal {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public void setUser(String user){
+		this.user = user;
+	}
+	public String getUSer(){
+		return this.user;
 	}
 	
 	public String getDescription() {
