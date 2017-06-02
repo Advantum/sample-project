@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { Journal } from '../../models/journal';
 import { JournalService } from '../../services/journal.service';
+import { UserService } from '../../services/user.service';
 
-
-// // const URL = '/api/';
-// const URL = 'http://localhost:4200/upload-journal/assets/journals';
 
 @Component({
   selector: 'app-upload-journal',
@@ -15,18 +13,8 @@ import { JournalService } from '../../services/journal.service';
 export class UploadJournalComponent implements OnInit {
 
     public newJournalEntry = new Journal();
-  // public uploader:FileUploader = new FileUploader({url: URL});
-  //   public hasBaseDropZoneOver:boolean = false;
-  //   public hasAnotherDropZoneOver:boolean = false;
-
-  //   public fileOverBase(e:any):void {
-  //     this.hasBaseDropZoneOver = e;
-  //   }
-
-  //   public fileOverAnother(e:any):void {
-  //     this.hasAnotherDropZoneOver = e;
-  //   }
-  constructor(private journalService: JournalService) { }
+  
+  constructor(private journalService: JournalService, private userService: UserService) { }
 
   ngOnInit() {
 
@@ -43,7 +31,16 @@ export class UploadJournalComponent implements OnInit {
       console.log(data);
     }, err => {
       console.log(err);
-  });
+    });
+  }
+
+  hasPermission(){
+    const user = this.userService.getLocalValues();
+    if(user.userRole == 'Publisher'){
+      return true;
+    }else{
+      return false;
+    }
   }
 
 }
