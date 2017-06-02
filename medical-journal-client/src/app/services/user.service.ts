@@ -30,4 +30,15 @@ export class UserService {
     return this.http.post('http://localhost:4200/api/login', user, {headers: headers})
     .map(res => res.json());
   }
+
+  getLocalValues(){
+    const id = localStorage.getItem("user");
+    const role = localStorage.getItem("role");
+    const authUser = {
+      userId : id,
+      userRole : role
+    }
+    return authUser;
+  }
+
 }
