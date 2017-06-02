@@ -5,14 +5,14 @@ import javax.validation.constraints.NotNull;
 public class Journal {
 	
 	@NotNull
-	private String id;
+	private int id;
 	@NotNull
 	private String name;
 	private String description;
 	private String fileUrl;
 	private User user;
 	
-	public Journal(String id, String name, String description, String fileUrl, int userId) {
+	public Journal(int id, String name, String description, String fileUrl, int userId) {
 		
 		this.id = id;
 		this.name = name;
@@ -21,10 +21,10 @@ public class Journal {
 		this.user = new User(userId, "", "", "", "", "");
 	}
 	
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
