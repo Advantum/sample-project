@@ -5,7 +5,7 @@
 
     <form #registrationForm="ngForm" (ngSubmit)="registerUser()" class="form-horizontal">
       <div class="form-group">
-        <label for="inputFirstName" class="col-lg-4 control-label">{{errorMessage}}</label>
+        <label for="inputFirstName" class="col-lg-4 control-label text-danger">{{errorMessage}}</label>
       </div>
       <div class="form-group">
         <label for="inputFirstName" class="col-lg-2 control-label">First Name</label>
@@ -32,6 +32,26 @@
           <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password" [(ngModel)]="newUser.password">
         </div>
       </div>
+
+      <div>
+      <label class="col-lg-2 control-label">Role</label>
+        <div class="col-lg-4">
+          <div class="radio">
+            <label>
+              <input type="radio" name="roleOptionsRadios" id="optionsRadios1" value="Subscriber" [(ngModel)]="newUser.role" checked>
+              Subscriber
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="roleOptionsRadios" id="optionsRadios2" value="Publisher" [(ngModel)]="newUser.role">
+              Publisher
+            </label>
+          </div>
+        </div>
+
+      </div>
+
       <button class="btn btn-sm btn-primary btn-block" type="submit">Sign up</button>
     </form>
 

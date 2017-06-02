@@ -1,11 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 import {Journal} from '../models/journal'
 import { JournalService } from './journal.service';
+import { HttpModule, Http, BaseRequestOptions, XHRBackend, Response, ResponseOptions} from '@angular/http';
+import { MockBackend } from '@angular/http/testing';
+
 
 describe('JournalService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [JournalService]
+       imports: [HttpModule],
+      providers: [JournalService, { provide: XHRBackend, useClass: MockBackend }]
     });
   });
 

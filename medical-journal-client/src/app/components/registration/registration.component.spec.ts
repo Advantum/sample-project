@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { inject,async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegistrationComponent } from './registration.component';
 import { NgModule }      from '@angular/core';
@@ -39,4 +39,15 @@ describe('RegistrationComponent', () => {
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('registerUser', () => {
+     it('should be defined', () => {
+      
+    });
+
+    it('should be defined', () => {
+      
+    });
+  });
+
 });

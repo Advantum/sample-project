@@ -2,13 +2,14 @@ package com.medical.journal.model;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
 @Document(collection="users")
 public class User {
 	@Id
-    private int id;
+    private String id;
     @NotNull
     private String email;
     @NotNull
@@ -21,8 +22,8 @@ public class User {
     public User() {
     }
 
-    public User(int id, String email, String password, String firstname, String lastname, String role) {
-        this.id = id;
+    public User(String email, String password, String firstname, String lastname, String role) {
+        this.id = email;
     	this.email = email;
         this.password = password;
         this.firstname = firstname;
@@ -31,11 +32,11 @@ public class User {
     }
 
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

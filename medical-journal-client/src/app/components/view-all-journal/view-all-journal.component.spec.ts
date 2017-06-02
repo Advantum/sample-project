@@ -1,13 +1,29 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ViewAllJournalComponent } from './view-all-journal.component';
+import { NgModule }      from '@angular/core';
+import { FormsModule }   from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { RouterModule, Routes } from '@angular/router';
+import {APP_BASE_HREF} from '@angular/common';
+
 
 describe('ViewAllJournalComponent', () => {
   let component: ViewAllJournalComponent;
   let fixture: ComponentFixture<ViewAllJournalComponent>;
 
+  const appRoutes: Routes = [
+  { path: 'view-all-journals', component: ViewAllJournalComponent}
+];
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        FormsModule,
+        HttpModule,
+        RouterModule.forRoot(appRoutes)
+      ],
+      providers: [{provide: APP_BASE_HREF, useValue : '/' }],
       declarations: [ ViewAllJournalComponent ]
     })
     .compileComponents();
