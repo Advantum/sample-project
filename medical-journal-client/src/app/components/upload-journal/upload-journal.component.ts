@@ -4,6 +4,7 @@ import { Journal } from '../../models/journal';
 import { JournalService } from '../../services/journal.service';
 import { UserService } from '../../services/user.service';
 import {Router} from '@angular/router';
+import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -12,13 +13,20 @@ import {Router} from '@angular/router';
   styleUrls: ['./upload-journal.component.css']
 })
 export class UploadJournalComponent implements OnInit {
-    newJournalEntry: any;
+    
+    public uploadForm: FormGroup;
     hasPermission: boolean;
     user: any;
+    uploadedFile: any;
   
-  constructor(private journalService: JournalService, private userService: UserService, private router: Router) { }
+  constructor(private journalService: JournalService, private userService: UserService, private router: Router, private _fb: FormBuilder) { }
 
   ngOnInit() {
+    this.uploadForm = this._fb.group({
+            name: ['', [Validators.required]],
+            description: ['', [Validators.required]]
+        });
+
     this.user = this.userService.getLocalValues();
     if(this.user.userRole === "Publisher"){
       this.hasPermission = true;
@@ -30,15 +38,15 @@ export class UploadJournalComponent implements OnInit {
   fileChange(event) {
     let files = event.target.files;
     if (files.length > 0) {
-      this.newJournalEntry.file = files[0];     
+      this.uploadedFile = files[0];     
     }
   }
 
   upload(){
      var formData = new FormData();
-    formData.append('name', this.newJournalEntry.name);
-    formData.append('description', this.newJournalEntry.description);
-    formData.append('file', this.newJournalEntry.file);
+    formData.append('name', this.uploadForm.value.name);
+    formData.append('description', this.uploadForm.value.description);
+    formData.append('file', this.uploadedFile);
     formData.append('userId', this.user.userId);
     this.journalService.saveJournal(formData).subscribe(data =>{
       this.router.navigate(['/view-all-journal']);

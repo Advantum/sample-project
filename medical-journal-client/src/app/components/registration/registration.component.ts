@@ -32,17 +32,16 @@ export class RegistrationComponent implements OnInit {
   //it to the service and handles the response displayed on the view.
   registerUser() {
     //TODO: Validate the inputs
-    console.log(this.registrationForm.value);
     this.errorMessage = "";
       this.userService.registerUser(this.registrationForm.value).subscribe(data =>{
         if(data){
           this.router.navigate(['/login']);
         }
       }, err => {
-      if(err){
-        console.log(err);
-        this.errorMessage = "User already exists!";
-      }
+        if(err){
+          console.log(err);
+          this.errorMessage = "User already exists!";
+        }
     });
   }
 }
