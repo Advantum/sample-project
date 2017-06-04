@@ -39,7 +39,7 @@ public class MedicalJournalController {
 			method=RequestMethod.GET)
 	public ResponseEntity<?> getContents() {
 		
-		return new ResponseEntity<>(journalService.getAllContent(), HttpStatus.OK);		
+		return new ResponseEntity<>(journalService.getAllJournal(), HttpStatus.OK);		
 	}
 	
 	/**
@@ -50,7 +50,7 @@ public class MedicalJournalController {
 	          value = "/api/journals",
 	          method = RequestMethod.GET)
 	  public ResponseEntity<?> getAllJournals() {
-	      return new ResponseEntity<>(journalService.getAllContent(), HttpStatus.OK);
+	      return new ResponseEntity<>(journalService.getAllJournal(), HttpStatus.OK);
 	  }
 	
 	/**
@@ -65,7 +65,7 @@ public class MedicalJournalController {
 	          value = "/api/journals",
 	          method = RequestMethod.POST, consumes={"multipart/form-data"})
 	  public ResponseEntity<?> getAllJournals(@RequestParam("file") MultipartFile file,  @RequestParam("name") String name, @RequestParam("description") String description, @RequestParam("userId") String userId) {
-	      return new ResponseEntity<>(journalService.createContent(file, name, description, userId), HttpStatus.OK);
+	      return new ResponseEntity<>(journalService.createJournal(file, name, description, userId), HttpStatus.OK);
 	  }
 	
 	
