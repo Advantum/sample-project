@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Directive  } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { FileUploadModule, FileUploader } from 'ng2-file-upload';
 import { RouterModule, Routes } from '@angular/router';
@@ -44,7 +44,8 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     FileUploadModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule
   ],
   providers: [UserService, JournalService],
   bootstrap: [AppComponent]

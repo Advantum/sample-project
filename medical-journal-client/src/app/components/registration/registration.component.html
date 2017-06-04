@@ -3,33 +3,45 @@
     <h1>Sign Up</h1>
 
 
-    <form #registrationForm="ngForm" (ngSubmit)="registerUser()" class="form-horizontal">
+    <form [formGroup]="registrationForm" (ngSubmit)="registerUser()" class="form-horizontal">
       <div class="form-group">
         <label for="inputFirstName" class="col-lg-4 control-label text-danger">{{errorMessage}}</label>
       </div>
       <div class="form-group">
-        <label for="inputFirstName" class="col-lg-2 control-label">First Name</label>
-        <div class="col-lg-4">
-          <input type="text" class="form-control" id="inputFirstName" name="inputFirstName" placeholder="First Name" [(ngModel)]="newUser.firstname">
+          <label for="inputFirstName" class="col-lg-2 control-label">First Name</label>
+          <div class="col-lg-4">
+            <input type="text" class="form-control" id="inputFirstName" name="inputFirstName" placeholder="First Name" formControlName="firstname">
+            <small *ngIf="!registrationForm.controls.firstname.valid" class="text-danger">
+              First Name is required (minimum 5 characters).
+            </small>
+          </div>
         </div>
-      </div>
        <div class="form-group">
         <label for="inputLastName" class="col-lg-2 control-label">Last Name</label>
         <div class="col-lg-4">
-          <input type="text" class="form-control" id="inputLastName" name="inputLastName" placeholder="Last Name" [(ngModel)]="newUser.lastname">
+          <input type="text" class="form-control" id="inputLastName" name="inputLastName" placeholder="Last Name" formControlName="lastname">
+          <small *ngIf="!registrationForm.controls.lastname.valid" class="text-danger">
+              Last Name is required (minimum 5 characters).
+            </small>
         </div>
       </div>
       <div class="form-group">
         <label for="inputEmail" class="col-lg-2 control-label">Email</label>
         <div class="col-lg-4">
-          <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email Address" [(ngModel)]="newUser.email">
+          <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="Email Address" formControlName="email">
+          <small *ngIf="!registrationForm.controls.email.valid" class="text-danger">
+              Email is required.
+            </small>
         </div>
       </div>
 
       <div class="form-group">
         <label for="inputPassword" class="col-lg-2 control-label">Password</label>
         <div class="col-lg-4">
-          <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password" [(ngModel)]="newUser.password">
+          <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password" formControlName="password">
+          <small *ngIf="!registrationForm.controls.password.valid" class="text-danger">
+              Password is required.
+            </small>
         </div>
       </div>
 
@@ -38,13 +50,13 @@
         <div class="col-lg-4">
           <div class="radio">
             <label>
-              <input type="radio" name="roleOptionsRadios" id="optionsRadios1" value="Subscriber" [(ngModel)]="newUser.role" checked>
+              <input type="radio" name="role" id="optionsRadios1" value="Subscriber" formControlName="role" checked>
               Subscriber
             </label>
           </div>
           <div class="radio">
             <label>
-              <input type="radio" name="roleOptionsRadios" id="optionsRadios2" value="Publisher" [(ngModel)]="newUser.role">
+              <input type="radio" name="role" id="optionsRadios2" value="Publisher" formControlName="role">
               Publisher
             </label>
           </div>
@@ -52,7 +64,7 @@
 
       </div>
 
-      <button class="btn btn-sm btn-primary btn-block" type="submit">Sign up</button>
+      <button class="btn btn-sm btn-primary btn-block" type="submit" [disabled]="registrationForm?.invalid">Sign up</button>
     </form>
 
 
