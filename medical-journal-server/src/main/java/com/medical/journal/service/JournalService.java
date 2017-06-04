@@ -13,7 +13,7 @@ import com.medical.journal.model.User;
 public interface JournalService {
 	Journal getJournalById(String journalId);
 	List<Journal> getAllContent();
-	Journal createContent(MultipartFile file, String name, String description, User publisher);
+	Journal createContent(MultipartFile file, String name, String description, String userId);
 	Resource getFile(String fileName) throws Exception;
 	
 }

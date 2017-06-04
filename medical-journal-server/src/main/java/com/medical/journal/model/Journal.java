@@ -37,12 +37,12 @@ public class Journal {
 	public Journal(){
 		
 	}
-	public Journal(String name, String description, String file, User publisher) {
+	public Journal(String name, String description, String file, User user) {
 		this.id = name;
 		this.name = name;
 		this.description = description;
 		this.file = file;
-		this.user = publisher;
+		this.user = user;
 	}
 	
 	public String getId() {
@@ -58,10 +58,10 @@ public class Journal {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public void setPublisher(User publisher){
-		this.user = publisher;
+	public void setUser(User user){
+		this.user = user;
 	}
-	public User getPublisher(){
+	public User getUser(){
 		return this.user;
 	}
 	
