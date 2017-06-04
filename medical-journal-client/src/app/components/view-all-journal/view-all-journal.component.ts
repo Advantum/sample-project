@@ -19,8 +19,11 @@ constructor (private journalService: JournalService) {}
   ngOnInit() {
     //Retrieve all Journals
       this.journalService.getAllJournals()
-        .subscribe(alljournals => this.journals = alljournals);
-          console.log("Journals", this.journals);
+        .subscribe(alljournals => {
+          this.journals = alljournals;
+        },
+          err => {
+            console.log("An error occured");
+          });
       }
-
 }

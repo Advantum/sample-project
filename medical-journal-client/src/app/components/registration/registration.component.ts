@@ -12,7 +12,6 @@ import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 })
 export class RegistrationComponent implements OnInit {
 
-  newUser: User;
   errorMessage: String;
   public registrationForm: FormGroup;
 
