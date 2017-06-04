@@ -64,8 +64,8 @@ public class MedicalJournalController {
 	@RequestMapping(
 	          value = "/api/journals",
 	          method = RequestMethod.POST, consumes={"multipart/form-data"})
-	  public ResponseEntity<?> getAllJournals(@RequestParam("file") MultipartFile file, @RequestParam("name") String name, @RequestParam("description") String description, @RequestParam("user") User user) {
-	      return new ResponseEntity<>(journalService.createContent(file, name, description, user), HttpStatus.OK);
+	  public ResponseEntity<?> getAllJournals(@RequestParam("file") MultipartFile file,  @RequestParam("name") String name, @RequestParam("description") String description, @RequestParam("userId") String userId) {
+	      return new ResponseEntity<>(journalService.createContent(file, name, description, userId), HttpStatus.OK);
 	  }
 	
 	

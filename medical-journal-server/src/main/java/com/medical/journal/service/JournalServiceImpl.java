@@ -39,6 +39,9 @@ public class JournalServiceImpl implements JournalService{
 	@Autowired
 	private JournalRepository journalRepository;
 	
+	@Autowired
+	private UserRepository userRepository;
+	
 	
 	/**
 	 * Get the journal based on the journal Id
@@ -61,7 +64,7 @@ public class JournalServiceImpl implements JournalService{
 	 * Create the content and move the file to the respective location.
 	 */
 	@Override 
-	public Journal createContent(MultipartFile file, String name, String description, User publisher) {
+	public Journal createContent(MultipartFile file, String name, String description, String userId) {
 		try{
 		String fileName = file.getOriginalFilename();
 		String directory = UPLOAD_PATH;
@@ -70,7 +73,9 @@ public class JournalServiceImpl implements JournalService{
 		BufferedOutputStream bs = new BufferedOutputStream(new FileOutputStream(new File(filepath)));
 		bs.write(file.getBytes());
 		
-		Journal journal = new Journal(name, description, filepath, publisher);
+		
+		User publisher = userRepository.findById(userId);
+		Journal journal = new Journal(name, description, filepath,  publisher);
 		
 		return journalRepository.save(journal);
 		

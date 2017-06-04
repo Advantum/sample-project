@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author linux-dev
  *
  */
-@Document(collection="users")
+@Document(collection="user")
 public class User {
 	@Id
     private String id;
