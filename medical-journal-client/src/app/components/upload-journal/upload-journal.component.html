@@ -8,27 +8,33 @@
                 <a class="navbar-brand" href>Upload Journal</a>
             </div>
         </div>
-        <div class="form-group">
-            <label for="inputJournalName" class="col-lg-2 control-label">Journal Name</label>
-            <div class="col-lg-4">
-                <input type="text" class="form-control" id="inputJournalName" name="inputJournalName" placeholder="Journal Name" [(ngModel)]="newJournalEntry.name">
+        <form [formGroup]="uploadForm" (submit)="upload()" class="form-horizontal">
+            <div class="form-group">
+                <label for="inputJournalName" class="col-lg-2 control-label">Journal Name</label>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" id="inputJournalName" name="inputJournalName" placeholder="Journal Name" formControlName="name">
+                    <small *ngIf="!uploadForm.controls.name.valid" class="text-danger">
+                        Name is required.
+                    </small>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="inputJournalDescription" class="col-lg-2 control-label">Journal Description</label>
-            <div class="col-lg-4">
-                <input type="text" class="form-control" id="inputJournalDescription" name="inputJournalDescription" placeholder="Journal Description" [(ngModel)]="newJournalEntry.description">
+            <div class="form-group">
+                <label for="inputJournalDescription" class="col-lg-2 control-label">Journal Description</label>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" id="inputJournalDescription" name="inputJournalDescription" placeholder="Journal Description" formControlName="description">
+                    <small *ngIf="!uploadForm.controls.description.valid" class="text-danger">
+                        Description is required.
+                    </small>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <input type="file" multiple="true" (change)="fileChange($event)" accept=".pdf">
-        </div>
+            <div class="form-group">
+                <input type="file" multiple="true" (change)="fileChange($event)" accept=".pdf">
+            </div>
 
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary" (click)="upload()" [disabled]="!hasPermission">Upload</button>
-        </div>
-
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" [disabled]="!hasPermission">Upload</button>
+            </div>
+        </form>
     </div>
-
   </div>
 </div>
