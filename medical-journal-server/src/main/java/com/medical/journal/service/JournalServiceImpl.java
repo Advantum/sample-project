@@ -54,7 +54,7 @@ public class JournalServiceImpl implements JournalService{
 	}
 
 	@Override
-	public List<Journal> getAllContent() {
+	public List<Journal> getAllJournal() {
 		List<Journal> journals = (List<Journal>) journalRepository.findAll();
 		
 		return journals;
@@ -64,7 +64,7 @@ public class JournalServiceImpl implements JournalService{
 	 * Create the content and move the file to the respective location.
 	 */
 	@Override 
-	public Journal createContent(MultipartFile file, String name, String description, String userId) {
+	public Journal createJournal(MultipartFile file, String name, String description, String userId) {
 		try{
 		String fileName = file.getOriginalFilename();
 		String directory = UPLOAD_PATH;
