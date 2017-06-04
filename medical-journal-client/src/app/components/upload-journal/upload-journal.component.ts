@@ -12,22 +12,19 @@ import {Router} from '@angular/router';
   styleUrls: ['./upload-journal.component.css']
 })
 export class UploadJournalComponent implements OnInit {
-
-    public newJournalEntry = new Journal();
+    newJournalEntry: any;
     hasPermission: boolean;
+    user: any;
   
   constructor(private journalService: JournalService, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    const user = this.userService.getLocalValues();
-    console.log(user.userRole)
-    if(user.userRole === "Publisher"){
-      console.log("in");
+    this.user = this.userService.getLocalValues();
+    if(this.user.userRole === "Publisher"){
       this.hasPermission = true;
     }else{
       this.hasPermission = false;
     }
-    console.log(this.hasPermission);
   }
 
   fileChange(event) {
@@ -35,7 +32,6 @@ export class UploadJournalComponent implements OnInit {
     if (files.length > 0) {
       this.newJournalEntry.file = files[0];     
     }
-    console.log(this.newJournalEntry);
   }
 
   upload(){
@@ -43,7 +39,7 @@ export class UploadJournalComponent implements OnInit {
     formData.append('name', this.newJournalEntry.name);
     formData.append('description', this.newJournalEntry.description);
     formData.append('file', this.newJournalEntry.file);
-    formData.append('user', this.newJournalEntry.publisher);
+    formData.append('userId', this.user.userId);
     this.journalService.saveJournal(formData).subscribe(data =>{
       this.router.navigate(['/view-all-journal']);
     }, err => {

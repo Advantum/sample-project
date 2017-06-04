@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
 
-  public newUser = new User();
+  newUser: any;
   errorMessage: String;
 
   constructor(private userService: UserService, private router: Router) { }
