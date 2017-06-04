@@ -43,6 +43,7 @@ export class UploadJournalComponent implements OnInit {
     formData.append('name', this.newJournalEntry.name);
     formData.append('description', this.newJournalEntry.description);
     formData.append('file', this.newJournalEntry.file);
+    formData.append('user', this.newJournalEntry.publisher);
     this.journalService.saveJournal(formData).subscribe(data =>{
       this.router.navigate(['/view-all-journal']);
     }, err => {

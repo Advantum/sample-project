@@ -1,8 +1,12 @@
 package com.medical.journal.model;
 
+import java.awt.List;
+import java.util.ArrayList;
+
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,18 +28,21 @@ public class Journal {
 	private String name;
 	private String description;
 	private String file;
-	private String publisher;
+	
+	@DBRef
+	private User user;
+	
 	
 	
 	public Journal(){
 		
 	}
-	public Journal(String id, String name, String description, String file, String publisher) {
-		this.id = id;
+	public Journal(String name, String description, String file, User publisher) {
+		this.id = name;
 		this.name = name;
 		this.description = description;
 		this.file = file;
-		this.publisher = publisher;
+		this.user = publisher;
 	}
 	
 	public String getId() {
@@ -51,11 +58,11 @@ public class Journal {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public void setPublisher(String publisher){
-		this.publisher = publisher;
+	public void setPublisher(User publisher){
+		this.user = publisher;
 	}
-	public String getPublisher(){
-		return this.publisher;
+	public User getPublisher(){
+		return this.user;
 	}
 	
 	public String getDescription() {

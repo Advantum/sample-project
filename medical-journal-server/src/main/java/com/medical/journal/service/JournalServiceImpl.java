@@ -61,7 +61,7 @@ public class JournalServiceImpl implements JournalService{
 	 * Create the content and move the file to the respective location.
 	 */
 	@Override 
-	public Journal createContent(MultipartFile file, String name, String description, String publisher) {
+	public Journal createContent(MultipartFile file, String name, String description, User publisher) {
 		try{
 		String fileName = file.getOriginalFilename();
 		String directory = UPLOAD_PATH;
@@ -70,7 +70,7 @@ public class JournalServiceImpl implements JournalService{
 		BufferedOutputStream bs = new BufferedOutputStream(new FileOutputStream(new File(filepath)));
 		bs.write(file.getBytes());
 		
-		Journal journal = new Journal(name, name, description, filepath, publisher);
+		Journal journal = new Journal(name, description, filepath, publisher);
 		
 		return journalRepository.save(journal);
 		
