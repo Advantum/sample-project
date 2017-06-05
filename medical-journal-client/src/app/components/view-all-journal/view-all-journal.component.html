@@ -2,7 +2,7 @@
   <div class="auth-block">
     <h1>Journals</h1>
       <div class="row">
-          <table class="table">
+          <table class="table table-striped table-responsive">
               <thead>
                 <tr>
                     <th>View</th>
@@ -25,7 +25,7 @@
                     <td nowrap>
                           <div *ngIf="journal.subscription ==true">
                             <button  type="button" class="btn btn-success btn-xs">
-                                <span class="glyphicon glyphicon-ok"></span> Subscribed
+                                <span class="glyphicon glyphicon-ok"></span>
                             </button>
                           </div>
                           <div *ngIf="journal.subscription==false">
