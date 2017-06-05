@@ -12,15 +12,28 @@ import { JournalService } from '../../services/journal.service';
 
 @Injectable()
 export class ViewAllJournalComponent implements OnInit {
-  journals = [];
+  //journals = [];
+    journals = [
+      {
+        "id": 1,
+        "name": "test file",
+        "description": "This is the desciption"
+      },
+      {
+        "id": 2,
+        "name": "test file",
+        "description": "This is the desciption"
+      }
+    ];
+
 
 constructor (private journalService: JournalService) {}
 
   ngOnInit() {
     //Retrieve all Journals
-      this.journalService.getAllJournals()
-        .subscribe(alljournals => this.journals = alljournals);
-          console.log("Journals", this.journals);
+      // this.journalService.getAllJournals()
+      //   .subscribe(alljournals => this.journals = alljournals);
+      //     console.log("Journals", this.journals);
       }
 
 }
