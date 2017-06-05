@@ -15,17 +15,24 @@
               <tbody>
                 <tr *ngFor= "let journal of journals">
                     <td>
-                        <a class="btn btn-warning btn-xs" href="/view-journal/{{journal.id}}">
-                            <span class="glyphicon glyphicon-upload"></span> Read
+                        <a class="btn btn-primary btn-xs" href="/view-journal/{{journal.id}}">
+                            <span class="glyphicon glyphicon-book"></span> Read
                         </a>
                     </td>
                     <td>{{journal.name}}</td>
                     <td>{{journal.description}} </td>
-                    <td> {{journal.publisher}} </td>
+                    <td> {{journal.user.firstname}} {{journal.user.lastname}}</td>
                     <td nowrap>
-                        <button type="button" class="btn btn-warning btn-xs">
-                            <span class="glyphicon glyphicon-upload"></span> Subscribe
-                        </button>
+                          <div *ngIf="journal.subscription ==true">
+                            <button  type="button" class="btn btn-success btn-xs">
+                                <span class="glyphicon glyphicon-ok"></span> Subscribed
+                            </button>
+                          </div>
+                          <div *ngIf="journal.subscription==false">
+                            <button  type="button" class="btn btn-warning btn-xs">
+                                <span class="glyphicon glyphicon-side"></span> Subscribe
+                            </button>
+                          </div>
                     </td>
                 </tr>
               </tbody>

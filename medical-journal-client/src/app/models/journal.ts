@@ -1,7 +1,9 @@
-export class Journal {
+import { User } from './user';
+
+export interface Journal {
     id: number;
     name: string;
     description: string;
     file: string;
-    publisher: string;
+    publisher: User;
 }

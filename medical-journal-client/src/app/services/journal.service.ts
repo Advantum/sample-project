@@ -24,4 +24,12 @@ export class JournalService {
     return this.http.get('http://localhost:4200/api/journals', {headers: headers})
     .map(res => res.json());
   }
+
+  getJounalById(journalId){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:4200/api/journals/' + journalId, {headers: headers})
+    .map(res => res.json());
+  }
+
 }
