@@ -32,6 +32,7 @@ export class UploadJournalComponent implements OnInit {
       this.hasPermission = true;
     }else{
       this.hasPermission = false;
+      this.router.navigate(['/view-all-journal']);
     }
   }
 

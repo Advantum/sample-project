@@ -2,7 +2,7 @@ import { inject,async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegistrationComponent } from './registration.component';
 import { NgModule }      from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, FormGroup, FormArray, FormBuilder, Validators, ReactiveFormsModule }   from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
@@ -22,6 +22,7 @@ describe('RegistrationComponent', () => {
       imports: [
         FormsModule,
         HttpModule,
+        ReactiveFormsModule,
         RouterModule.forRoot(appRoutes)
       ],
       providers: [UserService, {provide: APP_BASE_HREF, useValue : '/' }],

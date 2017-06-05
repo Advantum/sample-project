@@ -51,4 +51,12 @@ export class UserService {
     }
   }
 
+  isPublisher(){
+    let user = this.getLocalValues();
+    if(user.userRole == "Publisher"){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }
