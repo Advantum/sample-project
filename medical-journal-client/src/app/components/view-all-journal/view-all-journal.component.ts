@@ -3,6 +3,8 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { JournalService } from '../../services/journal.service';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { UserService } from '../../services/user.service';
+
 
 
 @Component({
@@ -16,7 +18,12 @@ import { BrowserModule } from '@angular/platform-browser';
 export class ViewAllJournalComponent implements OnInit {
   //journals = [];
   //  subscribe = true;
-
+  mockUser = [{
+         "id": 1,
+         "firstname": "Tim",
+         "lastname": "Doe",
+         "subscriptions": [ 2, 1 , 0]
+       }];
     journals = [
       {
         "id": 1,
@@ -52,9 +59,43 @@ export class ViewAllJournalComponent implements OnInit {
     ];
 
 
-constructor (private journalService: JournalService) {}
+constructor (private journalService: JournalService, private userService: UserService ) {}
 
   ngOnInit() {
+
+    // this.journals.forEach(function(journal) {
+    //     console.log(journal);
+    //     console.log(this.mockUser);
+    //
+    //     // for (let i = 0; i < this.tempUser.subscriptions.length; i++) {
+    //     //     if(this.tempUser.subscriptions[i]==journal.id){
+    //     //       journal.subscription = true;
+    //     //       console.log("Journal found: "+ this.tempUser.subscriptions[i] );
+    //     //     }
+    //     // }
+    // });
+
+    for (var journal in this.journals) // for acts as a foreach
+        {
+            // console.log(this.journals[journal]);
+
+            for (var subscription in this.mockUser[0].subscriptions) {
+              console.log("journal:", this.journals[journal].id);
+              console.log("subscription:", subscription)
+              // if(this.journals[journal].id == subscription){
+              //   journal.subscription = true;
+              //   console.log("Journal found: "+ subscription );
+              // }
+            }// for acts as a foreach
+
+        }
+            // for (let i = 0; i < this.mockUser[0].subscriptions.length; i++) {
+            //        if(this.mockUser[0].subscriptions[i]==journal.id){
+            //          journal.subscription = true;
+            //          console.log("Journal found: "+ this.mockUser[0].subscriptions[i] );
+            //        }
+            //    }
+
     //Retrieve all Journals
       // this.journalService.getAllJournals()
       //   .subscribe(alljournals => {
