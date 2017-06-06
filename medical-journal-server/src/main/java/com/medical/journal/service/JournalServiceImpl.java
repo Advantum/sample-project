@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.medical.journal.service;
 
@@ -33,12 +33,12 @@ import com.medical.journal.model.User;
  */
 @Service
 public class JournalServiceImpl implements JournalService{
-	
-	public static String UPLOAD_PATH = "C://Users/Gavin/Desktop/";
-	
+
+	public static String UPLOAD_PATH = "C://Users/Jason/Desktop/";
+
 	@Autowired
 	private JournalRepository journalRepository;
-	
+
 	@Autowired
 	private UserRepository userRepository;
 	
@@ -47,61 +47,62 @@ public class JournalServiceImpl implements JournalService{
 		userRepository = userRepo;
 	}
 
+
 	/**
 	 * Get the journal based on the journal Id
 	 */
 	@Override
 	public Journal getJournalById(String journalId) {
 		Journal journal = journalRepository.findOne(journalId);
-		
+
 		return journal;
 	}
 
 	@Override
 	public List<Journal> getAllJournal() {
 		List<Journal> journals = (List<Journal>) journalRepository.findAll();
-		
+
 		return journals;
 	}
-	
+
 	/**
 	 * Create the content and move the file to the respective location.
 	 */
-	@Override 
+	@Override
 	public Journal createJournal(MultipartFile file, String name, String description, String userId) {
 		try{
 		String fileName = file.getOriginalFilename();
 		String directory = UPLOAD_PATH;
 		String filepath = Paths.get(directory, fileName).toString();
-		
+
 		BufferedOutputStream bs = new BufferedOutputStream(new FileOutputStream(new File(filepath)));
 		bs.write(file.getBytes());
-		
-		
+
+
 		User publisher = userRepository.findById(userId);
 		Journal journal = new Journal(name, description, filepath,  publisher);
-		
+
 		return journalRepository.save(journal);
-		
+
 		} catch(Exception ex) {
 			System.err.print(ex.getMessage());
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Extract the file and return it to the calling function
 	 */
 	@Override
 	public Resource getFile(String journalId) throws Exception {
 		try {
-			
+
 			Journal journal = journalRepository.findById(journalId);
 			String fileName = journal.getFile();
-			
+
 			Path filePath = Paths.get(UPLOAD_PATH + fileName);
 			Resource resource = new UrlResource(filePath.toUri());
-			
+
 			if(resource.exists() || resource.isReadable()) {
 				return resource;
 			} else {

@@ -35,4 +35,43 @@ describe('LoginComponent', () => {
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
+
+  it('errorMessage should be defined on initial load ', () => {
+    component.ngOnInit();
+    expect(component.errorMessage).toBeDefined();
+  });
+
+  describe('onLogin function', () => {
+    
+  });
+
+
+  describe('onLogout function', () => {
+    beforeEach(() => {
+        var store = {};
+
+        spyOn(localStorage, 'getItem').and.callFake( (key:string):String => {
+        return store[key] || null;
+        });
+        spyOn(localStorage, 'removeItem').and.callFake((key:string):void =>  {
+          delete store[key];
+        });
+        spyOn(localStorage, 'setItem').and.callFake((key:string, value:string):string =>  {
+          return store[key] = <string>value;
+        });
+        spyOn(localStorage, 'clear').and.callFake(() =>  {
+            store = {};
+        });
+
+        localStorage.setItem('user', 'Test');
+        localStorage.setItem('role', 'Publisher');
+      });
+
+      it('should clear all defined localStorage values', () => {
+        component.onLogout();
+        expect(localStorage.clear).toHaveBeenCalled();
+        expect(localStorage.getItem('user')).toBeNull();
+        expect(localStorage.getItem('role')).toBeNull();
+      });
+  })
 });

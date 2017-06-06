@@ -2,7 +2,7 @@
   <div class="auth-block">
     <h1>Journals</h1>
       <div class="row">
-          <table class="table">
+          <table class="table table-striped table-responsive">
               <thead>
                 <tr>
                     <th>View</th>
@@ -14,18 +14,25 @@
               </thead>
               <tbody>
                 <tr *ngFor= "let journal of journals">
-                    <td>
-                        <a class="btn btn-warning btn-xs" href="/view-journal/{{journal.id}}">
-                            <span class="glyphicon glyphicon-upload"></span> Read
+                    <td class="col-md-1">
+                        <a class="btn btn-primary btn-xs" href="/view-journal/{{journal.id}}">
+                            <span class="glyphicon glyphicon-book"></span> Read
                         </a>
                     </td>
-                    <td>{{journal.name}}</td>
-                    <td>{{journal.description}} </td>
-                    <td> {{journal.user.firstname}} {{journal.user.lastname}}</td>
-                    <td nowrap>
-                        <button type="button" class="btn btn-warning btn-xs">
-                            <span class="glyphicon glyphicon-upload"></span> Subscribe
-                        </button>
+                    <td class="col-md-3">{{journal.name}}</td>
+                    <td class="col-md-5">{{journal.description}} </td>
+                    <td class="col-md-2"> {{journal.user.firstname}} {{journal.user.lastname}}</td>
+                    <td nowrap class="col-md-1">
+                          <div *ngIf="journal.subscription ==true">
+                            <button  (click)="subscribe($event, journal)" type="button" class="btn btn-success btn-xs ">
+                                <span class="glyphicon glyphicon-ok"> Subscribed</span>
+                            </button>
+                          </div>
+                          <div *ngIf="journal.subscription==false">
+                            <button (click)="subscribe($event, journal)"  type="button" class="btn btn-warning btn-xs">
+                                <span class="glyphicon glyphicon-side"></span> Subscribe
+                            </button>
+                          </div>
                     </td>
                 </tr>
               </tbody>
