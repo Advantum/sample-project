@@ -19,7 +19,6 @@ public class User {
     @NotNull
     private String email;
     @NotNull
-    @JsonIgnore
     private String password;
     private String firstname;
     private String lastname;
