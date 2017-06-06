@@ -34,6 +34,14 @@ public class UserController {
 		return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
 	}
 	
+	
+	@RequestMapping(
+			value="/users",
+			method=RequestMethod.PUT)
+	public ResponseEntity<?> updateUser(@RequestBody User user) {
+		return new ResponseEntity<>(userService.updateUser(user), HttpStatus.OK);
+	}
+	
 	@RequestMapping(
 			value="/registration",
 			method=RequestMethod.POST)
@@ -42,7 +50,6 @@ public class UserController {
 		
 		return user;
 	}
-	
 	
 	@RequestMapping(
 			value="/user/{email}",

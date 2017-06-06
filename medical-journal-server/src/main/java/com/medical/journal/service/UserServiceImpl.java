@@ -54,4 +54,10 @@ public class UserServiceImpl implements UserService{
 			}
 		}
 	}
+
+
+	@Override
+	public ResponseEntity<User> updateUser(User user) {
+		return new ResponseEntity<User>( userRepository.save(user), HttpStatus.OK );
+	}
 }

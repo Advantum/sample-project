@@ -13,5 +13,5 @@ public interface UserService {
     Boolean getUserByEmail(String email);
     User createUser(User user);
     ResponseEntity<User> authenticateUser(User user);
-    
+    ResponseEntity<User> updateUser(User user);
 }

@@ -21,18 +21,20 @@ public class User {
     private String firstname;
     private String lastname;
     private String role;
+    private String[] subscriptions;
 
 
     public User() {
     }
 
-    public User(String email, String password, String firstname, String lastname, String role) {
+    public User(String email, String password, String firstname, String lastname, String role, String[] subscriptions) {
         this.id = email;
     	this.email = email;
         this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
         this.role = role;
+        this.subscriptions = subscriptions;
     }
 
 
@@ -82,6 +84,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+    
+    public void setSubscriptions(String[] subscriptions) {
+    	this.subscriptions = subscriptions;
+    }
+    
+    public String[] getSubscriptions(){
+    	return this.subscriptions;
     }
 
     @Override
