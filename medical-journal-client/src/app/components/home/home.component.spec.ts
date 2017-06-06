@@ -34,6 +34,6 @@ describe('HomeComponent', () => {
     const fixture = TestBed.createComponent(HomeComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('p').textContent).toContain('Welcome');
+    expect(compiled.querySelector('p').textContent).toContain('Your gateway to world-class journal research.');
   }));
 });
