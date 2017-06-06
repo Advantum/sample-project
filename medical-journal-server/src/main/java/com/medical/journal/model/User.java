@@ -5,6 +5,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * The User model
  * @author linux-dev
@@ -17,6 +19,7 @@ public class User {
     @NotNull
     private String email;
     @NotNull
+    //@JsonIgnore
     private String password;
     private String firstname;
     private String lastname;

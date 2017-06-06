@@ -14,6 +14,6 @@ public interface JournalService {
 	Journal getJournalById(String journalId);
 	List<Journal> getAllJournal();
 	Journal createJournal(MultipartFile file, String name, String description, String userId);
-	Resource getFile(String fileName) throws Exception;
+	/*Resource*/ Journal getFile(String fileName) throws Exception;
 	
 }

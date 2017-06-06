@@ -10,6 +10,7 @@ export class JournalService {
 
   constructor(private http:Http) { }
 
+
   saveJournal(journal){
     let headers = new Headers();
     //headers.append('Content-Type', 'multipart/form-data;boundary=------');
