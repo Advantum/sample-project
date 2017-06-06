@@ -23,9 +23,10 @@ export class ViewJournalComponent implements OnInit {
       this.journalService.getJounalById(this.journalId)
         .subscribe(journalData => {
           this.journal = journalData;
+          console.log("this.journal: ", this.journal)
         },
           err => {
-            console.log("An error occured");
+            console.log("An error occured: " );
           });
       }
   }
