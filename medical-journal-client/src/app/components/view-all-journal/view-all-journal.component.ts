@@ -22,13 +22,12 @@ export class ViewAllJournalComponent implements OnInit {
 
 /***** MOCK DATA *********/
 //  subscribe = true;
-  mockUser = [{
-         "id": 1,
-         "firstname": "Tim",
-         "lastname": "Doe",
-         "subscriptions": [ "Diabetes", 1 , 8]
-       }];
-
+  // mockUser = [{
+  //        "id": 1,
+  //        "firstname": "Tim",
+  //        "lastname": "Doe",
+  //        "subscriptions": [ "Diabetes", 1 , 8]
+  //      }];
 
 
 constructor (private journalService: JournalService, private userService: UserService ) {}
@@ -36,16 +35,17 @@ constructor (private journalService: JournalService, private userService: UserSe
   ngOnInit() {
     this.user = this.userService.getLocalValues();
     console.log("User", this.user);
+
+    //Retrieve UserInfo to display journals subscribe to
     this.userInfo = this.getUser(this.user.userId);
     console.log("UserInfo", this.userInfo);
 
-
-    //Map Journals to show which Journals the User Subscibe to.
     //Retrieve all Journals
       this.journalService.getAllJournals()
         .subscribe(alljournals => {
           this.journals = alljournals;
-
+          
+          //Map Journals to show which Journals the User Subscibe to.
           for (var journal in this.journals) // for acts as a foreach
            {
                this.journals[journal].subscription = false; //Default
