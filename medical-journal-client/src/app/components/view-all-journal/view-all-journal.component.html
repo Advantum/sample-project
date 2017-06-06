@@ -24,8 +24,8 @@
                     <td> {{journal.user.firstname}} {{journal.user.lastname}}</td>
                     <td nowrap>
                           <div *ngIf="journal.subscription ==true">
-                            <button  (click)="subscribe($event, journal)" type="button" class="btn btn-success btn-xs">
-                                <span class="glyphicon glyphicon-ok"></span>
+                            <button  (click)="subscribe($event, journal)" type="button" class="btn btn-success btn-xs ">
+                                <span class="glyphicon glyphicon-ok"> Subscribed</span>
                             </button>
                           </div>
                           <div *ngIf="journal.subscription==false">

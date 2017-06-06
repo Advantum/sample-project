@@ -24,7 +24,7 @@ export class ViewAllJournalComponent implements OnInit {
          "id": 1,
          "firstname": "Tim",
          "lastname": "Doe",
-         "subscriptions": [ 2, 1 , 8]
+         "subscriptions": [ "Diabetes", 1 , 8]
        }];
 
 
@@ -45,8 +45,9 @@ constructor (private journalService: JournalService, private userService: UserSe
 
                //Check if Journals contains the User Journal
                if(this.mockUser[0].subscriptions.indexOf(this.journals[journal].id)!== -1){
-                 this.journals[journal].subscription = true;
                  console.log("Found:" + this.journals[journal].id);
+
+                 this.journals[journal].subscription = true;
 
                }// for acts as a foreach
 
