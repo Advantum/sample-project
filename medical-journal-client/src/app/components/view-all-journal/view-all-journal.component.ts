@@ -15,7 +15,8 @@ import { UserService } from '../../services/user.service';
 })
 
 @Injectable()
-export class ViewAllJournalComponent implements OnInit {
+export class ViewAllJournalComponent implements OnInit {4
+  user: any;
   journals = [];
 
 /***** MOCK DATA *********/
@@ -32,6 +33,7 @@ export class ViewAllJournalComponent implements OnInit {
 constructor (private journalService: JournalService, private userService: UserService ) {}
 
   ngOnInit() {
+    this.user = this.userService.getLocalValues();
 
     //Map Journals to show which Journals the User Subscibe to.
     //Retrieve all Journals
@@ -63,13 +65,19 @@ constructor (private journalService: JournalService, private userService: UserSe
       console.log("Subscription: ", subscription);
 
       if(subscription.subscription){
-        alert("UnSubcribed");
         //post to update user with journal
+        alert("UnSubcribed");
+        // this.userService.removeJournal(subscription).subscribe(data =>{
+        //   console.log(data);
+        // }
       }else{
         //post to remove journal from the list
         alert("Subcribed")
-
+        // this.userService.addJournal(subscription).subscribe(data =>{
+        //   console.log(data);
+        // }
       }
+
 
       for (var journal in this.journals) // for acts as a foreach
         {
