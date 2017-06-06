@@ -16,7 +16,7 @@ describe('UserService', () => {
     expect(service).toBeTruthy();
   }));
 
-  describe('getUserByEmail endpoint', () => {  
+  describe('getUserByEmail endpoint', () => {
 
       it('should return an user when all parameters sent', inject([UserService, XHRBackend], (userService, mockBackend) => {
          const mockResponse = {
@@ -27,19 +27,19 @@ describe('UserService', () => {
         const userPayLoad = {
           email :"x@x.com"
         }
-        
+
 
         mockBackend.connections.subscribe((connection) => {
           connection.mockRespond(new Response(new ResponseOptions({
             body: JSON.stringify(mockResponse)
           })));
         });
-        
+
         userService.getUserByEmail(userPayLoad).subscribe((user) => {
           expect(user.data.length).toBe(1);
         });
       }));
-      
+
       it('should not return an user when email param not set', inject([UserService, XHRBackend], (userService, mockBackend) => {
         const userPayLoad = {
           name :"x@x.com"
@@ -50,7 +50,7 @@ describe('UserService', () => {
             status: 500,
           })));
         });
-        
+
         userService.getUserByEmail(userPayLoad).subscribe((user) => {
           console.log(user);
           expect(user).toBeUndefined();
@@ -60,7 +60,7 @@ describe('UserService', () => {
       }));
     });
 
-    describe('authenticateUser endpoint', () => {  
+    describe('authenticateUser endpoint', () => {
         it('should return an user when all parameters sent', inject([UserService, XHRBackend], (userService, mockBackend) => {
          const mockResponse = {
           data: [
@@ -79,14 +79,14 @@ describe('UserService', () => {
             status: 200
           })));
         });
-        
+
         userService.authenticateUser(userPayLoad).subscribe((successResult) => {
           expect(successResult).toBeDefined();
         });
       }));
     });
 
-    describe('registerUser endpoint', () => {  
+    describe('registerUser endpoint', () => {
         it('should return an user when all parameters sent', inject([UserService, XHRBackend], (userService, mockBackend) => {
          const mockResponse = {
           data: [
@@ -105,7 +105,7 @@ describe('UserService', () => {
             status: 200
           })));
         });
-        
+
         userService.registerUser(userPayLoad).subscribe((successResult) => {
           expect(successResult).toBeDefined();
         });
@@ -113,7 +113,7 @@ describe('UserService', () => {
     });
 
 
-    describe('getLocalValues endpoint', () => { 
+    describe('getLocalValues endpoint', () => {
       beforeEach(() => {
         var store = {};
 
@@ -137,7 +137,7 @@ describe('UserService', () => {
           var successResult = userService.getLocalValues();
           expect(successResult).toBeDefined();
           expect(successResult.userId).toBe("Test");
-          expect(successResult.userRole).toBe("Publisher");          
+          expect(successResult.userRole).toBe("Publisher");
       }));
     });
 
