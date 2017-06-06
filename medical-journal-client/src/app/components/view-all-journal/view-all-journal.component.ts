@@ -44,7 +44,7 @@ constructor (private journalService: JournalService, private userService: UserSe
       this.journalService.getAllJournals()
         .subscribe(alljournals => {
           this.journals = alljournals;
-          
+
           //Map Journals to show which Journals the User Subscibe to.
           for (var journal in this.journals) // for acts as a foreach
            {
