@@ -17,6 +17,7 @@ import { UserService } from '../../services/user.service';
 @Injectable()
 export class ViewAllJournalComponent implements OnInit {
   user: any;
+  userInfo: any;
   journals = [];
 
 /***** MOCK DATA *********/
@@ -34,6 +35,10 @@ constructor (private journalService: JournalService, private userService: UserSe
 
   ngOnInit() {
     this.user = this.userService.getLocalValues();
+    console.log("User", this.user);
+    this.userInfo = this.getUser(this.user.userId);
+    console.log("UserInfo", this.userInfo);
+
 
     //Map Journals to show which Journals the User Subscibe to.
     //Retrieve all Journals
@@ -45,14 +50,15 @@ constructor (private journalService: JournalService, private userService: UserSe
            {
                this.journals[journal].subscription = false; //Default
 
-               //Check if Journals contains the User Journal
-               if(this.mockUser[0].subscriptions.indexOf(this.journals[journal].id)!== -1){
-                 console.log("Found:" + this.journals[journal].id);
+               if(this.userInfo.subscriptions){
+                   //Check if Journals contains the User Journal
+                   if(this.userInfo.subscriptions.indexOf(this.journals[journal].id)!== -1){
+                     console.log("Found:" + this.journals[journal].id);
 
-                 this.journals[journal].subscription = true;
+                     this.journals[journal].subscription = true;
 
-               }// for acts as a foreach
-
+                   }
+               }
            }
         },
           err => {
@@ -60,6 +66,7 @@ constructor (private journalService: JournalService, private userService: UserSe
           });
       }
 
+    //When user click Subscribe Button
     subscribe(event, subscription){
 
       console.log("Subscription: ", subscription);
@@ -67,38 +74,42 @@ constructor (private journalService: JournalService, private userService: UserSe
       if(subscription.subscription){
         //post to update user with journal
         alert("UnSubcribed");
-        this.mockUser[0].subscriptions.push(subscription.id);
+        this.userInfo.subscriptions.push(subscription.id);
 
       }else{
         //post to remove journal from the list
-        var index = this.mockUser[0].subscriptions.indexOf(subscription.id);
+        if(this.userInfo.subscriptions){
+          var index = this.userInfo.subscriptions.indexOf(subscription.id);
+        }
         if(index > -1){
-            this.mockUser[0].subscriptions.splice(index, 1);
+            this.userInfo.subscriptions.splice(index, 1);
         }
         alert("Subcribed");
 
 
-        this.updateUserJournals(this.mockUser);
+        this.updateUserJournals(this.userInfo);
         }
       }
-      /**** Update Server Side **********/
 
-      // for (var journal in this.journals) // for acts as a foreach
-      //   {
-      //
-      //       if(this.journals[journal].id ==subscription.id){
-      //         this.journals[journal].subscription = subscription.subscription; //Default
-      //         console.log("Update Journal" + subscription.id);
-      //       }
-      //
-      //   }
+  /**** Update Server Side **********/
     updateUserJournals(user){
-      console.log("User To Update", this.mockUser);
+      console.log("User To Update", user);
 
-      //this.userService.updateUserJournals(this.mockUser).subscribe(data =>{
-      //   console.log(data);
-      // }
+      this.userService.updateUserJournals(user).subscribe(data =>{
+        console.log("Updated?", data);
+      },
+        err => {
+          console.log("An error occured updating user");
+        });
 
+    }
+    getUser(id){
+      return this.userService.getUser(id).subscribe(data =>{
+        console.log("User Data:", data);
+      },
+        err => {
+          console.log("An error occured");
+        });
     }
 
 }

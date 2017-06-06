@@ -19,52 +19,59 @@ import com.medical.journal.service.UserService;
 @RequestMapping("api")
 @Controller
 public class UserController {
-	
+
 	private final UserService userService;
-	
+
 	@Autowired
 	public UserController(UserService userService) {
 		this.userService = userService;
 	}
-	
+
 	@RequestMapping(
 			value="/users",
 			method=RequestMethod.GET)
 	public ResponseEntity<?> getAllUsers() {
 		return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
 	}
-	
-	
+
+
 	@RequestMapping(
 			value="/users",
 			method=RequestMethod.PUT)
 	public ResponseEntity<?> updateUser(@RequestBody User user) {
 		return new ResponseEntity<>(userService.updateUser(user), HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(
 			value="/registration",
 			method=RequestMethod.POST)
 	public User createUser(@RequestBody User user) {
 		userService.createUser(user);
-		
+
 		return user;
 	}
-	
+
 	@RequestMapping(
 			value="/user/{email}",
 			method=RequestMethod.GET)
 	public Boolean getUserByEmail(@PathVariable("email") String email) {
 		return userService.getUserByEmail(email);
 	}
-	
-	
+
+	@RequestMapping(
+			value="/user/id/{id}",
+			method=RequestMethod.GET)
+	public User getUser(@PathVariable("id") String id) {
+		return userService.getUser(id);
+	}
+
+
 	@RequestMapping(
 			value="/login",
 			method=RequestMethod.POST)
 	public ResponseEntity<User> authenticateUser(@RequestBody User user) {
-		
+
 		return userService.authenticateUser(user);
 	}
-	
+
 }

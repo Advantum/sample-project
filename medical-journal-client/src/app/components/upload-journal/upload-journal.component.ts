@@ -13,12 +13,12 @@ import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./upload-journal.component.css']
 })
 export class UploadJournalComponent implements OnInit {
-    
+
     public uploadForm: FormGroup;
     hasPermission: boolean;
     user: any;
     uploadedFile: any;
-  
+
   constructor(private journalService: JournalService, private userService: UserService, private router: Router, private _fb: FormBuilder) { }
 
   ngOnInit() {
@@ -39,7 +39,7 @@ export class UploadJournalComponent implements OnInit {
   fileChange(event) {
     let files = event.target.files;
     if (files.length > 0) {
-      this.uploadedFile = files[0];     
+      this.uploadedFile = files[0];
     }
   }
 

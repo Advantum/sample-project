@@ -17,6 +17,12 @@ export class UserService {
     .map(res => res.json());
   }
 
+  getUser(id){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:4200/api/user/id/' + id, {headers: headers})
+    .map(res => res.json());
+  }
   getUserByEmail(user){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
