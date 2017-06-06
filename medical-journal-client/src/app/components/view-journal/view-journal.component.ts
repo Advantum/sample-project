@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute, Params} from '@angular/router';
 import { JournalService } from '../../services/journal.service';
+import {Journal} from '../../models/journal';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-view-journal',
@@ -11,8 +13,8 @@ import { JournalService } from '../../services/journal.service';
 export class ViewJournalComponent implements OnInit {
 
   journalId: any;
-  journal: any;
-  constructor(private activatedRoute: ActivatedRoute, private journalService: JournalService) { }
+  journal: Journal;
+  constructor(private activatedRoute: ActivatedRoute, private journalService: JournalService, private sanitizer: DomSanitizer ) { }
 
   ngOnInit() {
     // subscribe to router params event
@@ -23,10 +25,17 @@ export class ViewJournalComponent implements OnInit {
       this.journalService.getJounalById(this.journalId)
         .subscribe(journalData => {
           this.journal = journalData;
-          console.log("this.journal: ", this.journal)
+          console.log("this.journal: ",  this.journal);
         },
           err => {
-            console.log("An error occured: " );
+            console.log(err);
           });
       }
+
+    fileURL(fileLocation) {
+      console.log(fileLocation);
+      return this.sanitizer.bypassSecurityTrustResourceUrl('https://blog.mozilla.org/security/files/2015/05/HTTPS-FAQ.pdf');
+      //return this.sanitizer.bypassSecurityTrustResourceUrl(fileLocation);
+    }
   }
+

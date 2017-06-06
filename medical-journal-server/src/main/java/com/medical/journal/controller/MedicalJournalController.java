@@ -87,15 +87,16 @@ public class MedicalJournalController {
 	@RequestMapping(value="/api/journals/{journalId}",
 			method=RequestMethod.GET)
 	@ResponseBody
-	public ResponseEntity<Resource> getFile(@PathVariable("journalId") String journalId ) {
+	public ResponseEntity<?> getFile(@PathVariable("journalId") String journalId ) {
 		
 		try{
-			Resource journalFile = journalService.getFile(journalId);
+			//Resource journalFile = journalService.getFile(journalId);
 			
-			return ResponseEntity
+			return  new ResponseEntity<>(journalService.getFile(journalId), HttpStatus.OK);	
+			/*return ResponseEntity
 						.ok()
 						.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + journalFile.getFilename() + "\"")
-						.body(journalFile); 
+						.body(journalFile); */
 		} catch (Exception e) {
 			System.err.println("Loading file failed. Reason: " + e.getMessage());
 			return null;

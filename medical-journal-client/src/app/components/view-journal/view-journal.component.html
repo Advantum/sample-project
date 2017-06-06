@@ -3,14 +3,20 @@
      <div class="container">
 
       <div class="starter-template">
-        <h1>TITLE</h1>
-        <h3>by XYZ</h3>
-        <p class="lead">This is place where the journals will be displayed</p>
+        <h1>{{journal?.name}}</h1> by {{journal?.user.firstname}}
+        
       </div>
       <div class="">
         <button type="button" class="btn btn-warning btn-sm">
             <span class="glyphicon glyphicon-side"></span> Subscribe
         </button>
+      </div>
+      <p class="lead">{{journal?.description}}</p>
+      <div>
+          <iframe [src]='fileURL(journal?.file)' width="1000" height="360" frameborder="0"
+            webkitallowfullscreen mozallowfullscreen allowfullscreen>
+          </iframe>
+
       </div>
 
     </div><!-- /.container -->
