@@ -11,7 +11,8 @@ public class UserTest {
 	public static User aUser;
 	@Before
 	public void setUp() throws Exception {
-		aUser = new User("myemail@gmail.com", "mypassword", "myfirstname", "mylastname", "newRole");
+		String[] subs = {"1","2","3"};
+		aUser = new User("myemail@gmail.com", "mypassword", "myfirstname", "mylastname", "newRole", subs);
 	}
 
 	@After

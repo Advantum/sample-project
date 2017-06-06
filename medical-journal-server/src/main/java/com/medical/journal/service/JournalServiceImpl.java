@@ -42,7 +42,11 @@ public class JournalServiceImpl implements JournalService{
 	@Autowired
 	private UserRepository userRepository;
 	
-	
+	public JournalServiceImpl(JournalRepository journalRepo, UserRepository userRepo) {
+		journalRepository = journalRepo;
+		userRepository = userRepo;
+	}
+
 	/**
 	 * Get the journal based on the journal Id
 	 */
