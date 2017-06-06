@@ -68,8 +68,9 @@ constructor (private journalService: JournalService, private userService: UserSe
       //Map Journals to show which Journals the User Subscibe to.
       for (var journal in this.journals) // for acts as a foreach
         {
-            this.journals[journal].subscription = false;
+            this.journals[journal].subscription = false; //Default
 
+            //Check if Journals contains the User Journal
             if(this.mockUser[0].subscriptions.indexOf(this.journals[journal].id)!== -1){
               this.journals[journal].subscription = true;
               console.log("Found:" + this.journals[journal].id);
@@ -88,6 +89,12 @@ constructor (private journalService: JournalService, private userService: UserSe
       //     });
       }
 
-    subscribed(){
+    subscribe(event, subscription){
+      console.log("Subscription: ", subscription);
+      if(subscription.subscription){
+        //post to update user with journal
+      }else{
+        //post to remove journal from the list
+      }
     }
 }
