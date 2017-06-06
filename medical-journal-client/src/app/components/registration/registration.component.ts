@@ -15,10 +15,7 @@ export class RegistrationComponent implements OnInit {
   errorMessage: String;
   public registrationForm: FormGroup;
 
-  constructor(private userService: UserService, private router: Router, private _fb: FormBuilder) { }
-
-  ngOnInit() {
-    this.errorMessage = "";
+  constructor(private userService: UserService, private router: Router, private _fb: FormBuilder) { 
     this.registrationForm = this._fb.group({
             firstname: ['', [Validators.required, Validators.minLength(5)]],
             lastname: ['', [Validators.required, Validators.minLength(5)]],
@@ -26,6 +23,10 @@ export class RegistrationComponent implements OnInit {
             password: ['', [Validators.required]],
             role: ['', [Validators.required]]
         });
+  }
+
+  ngOnInit() {
+    this.errorMessage = "";
   }
   //This function grabs the newUser model from the form and submits 
   //it to the service and handles the response displayed on the view.
