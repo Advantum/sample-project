@@ -15,7 +15,7 @@ import { UserService } from '../../services/user.service';
 })
 
 @Injectable()
-export class ViewAllJournalComponent implements OnInit {4
+export class ViewAllJournalComponent implements OnInit {
   user: any;
   journals = [];
 
@@ -67,26 +67,38 @@ constructor (private journalService: JournalService, private userService: UserSe
       if(subscription.subscription){
         //post to update user with journal
         alert("UnSubcribed");
-        // this.userService.removeJournal(subscription).subscribe(data =>{
-        //   console.log(data);
-        // }
+        this.mockUser[0].subscriptions.push(subscription.id);
+
       }else{
         //post to remove journal from the list
-        alert("Subcribed")
-        // this.userService.addJournal(subscription).subscribe(data =>{
-        //   console.log(data);
-        // }
-      }
-
-
-      for (var journal in this.journals) // for acts as a foreach
-        {
-
-            if(this.journals[journal].id ==subscription.id){
-              this.journals[journal].subscription = subscription.subscription; //Default
-              console.log("Update Journal" + subscription.id);
-            }
-
+        var index = this.mockUser[0].subscriptions.indexOf(subscription.id);
+        if(index > -1){
+            this.mockUser[0].subscriptions.splice(index, 1);
         }
+        alert("Subcribed");
+
+
+        this.updateUserJournals(this.mockUser);
+        }
+      }
+      /**** Update Server Side **********/
+
+      // for (var journal in this.journals) // for acts as a foreach
+      //   {
+      //
+      //       if(this.journals[journal].id ==subscription.id){
+      //         this.journals[journal].subscription = subscription.subscription; //Default
+      //         console.log("Update Journal" + subscription.id);
+      //       }
+      //
+      //   }
+    updateUserJournals(user){
+      console.log("User To Update", this.mockUser);
+
+      //this.userService.updateUserJournals(this.mockUser).subscribe(data =>{
+      //   console.log(data);
+      // }
+
     }
+
 }

@@ -30,6 +30,14 @@ export class UserService {
     return this.http.post('http://localhost:4200/api/login', user, {headers: headers})
     .map(res => res.json());
   }
+
+  updateUserJournals(user){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.put('http://localhost:4200/api/users', user, {headers: headers})
+    .map(res => res.json());
+  }
+
   //This gets the logal storage information and returns a authUSer object
   getLocalValues(){
     const id = localStorage.getItem("user");
@@ -40,7 +48,7 @@ export class UserService {
     }
     return authUser;
   }
-  
+
 //Function checks local storage if user logged in
   isLoggedIn(){
     let user = this.getLocalValues();
