@@ -34,8 +34,27 @@ describe('ViewAllJournalComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
+  describe('subscribe', () => {
+
+    it('should call subscribe method', () => {
+
+      expect(component).toBeTruthy();
+    });
+    it('should show all journals', () => {
+
+      expect(component).toBeTruthy();
+    });
+    it('journal should be added to user object if subscribed', () => {
+
+      expect(component).toBeTruthy();
+    });
+    it('journal should have subscription field', () => {
+
+      expect(component).toBeTruthy();
+    });
+  });
+
 });

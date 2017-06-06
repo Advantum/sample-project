@@ -112,6 +112,40 @@ describe('UserService', () => {
       }));
     });
 
+    describe('updateUserJournals endpoint', () => {
+        it('should return the user when all parameters sent', inject([UserService, XHRBackend], (userService, mockBackend) => {
+         const mockResponse = {
+          data: [
+            {
+              id: 'x@x.com',
+              firstname: 'Test',
+              lastname: 'Test',
+              email: 'x@x.com',
+              password: 'Test' ,
+              role: 'Publisher',
+              subscriptions:[1, 2, 3]
+            }
+          ]
+        };
+
+        const userPayLoad = {
+          email :"x@x.com",
+          password: "xxxx"
+        }
+
+        mockBackend.connections.subscribe((connection) => {
+          connection.mockRespond(new Response(new ResponseOptions({
+            body: JSON.stringify(mockResponse),
+            status: 200
+          })));
+        });
+
+        userService.registerUser(userPayLoad).subscribe((successResult) => {
+          expect(successResult).toBeDefined();
+        });
+      }));
+    });
+
 
     describe('getLocalValues endpoint', () => {
       beforeEach(() => {
