@@ -14,15 +14,15 @@
               </thead>
               <tbody>
                 <tr *ngFor= "let journal of journals">
-                    <td>
+                    <td class="col-md-1">
                         <a class="btn btn-primary btn-xs" href="/view-journal/{{journal.id}}">
                             <span class="glyphicon glyphicon-book"></span> Read
                         </a>
                     </td>
-                    <td>{{journal.name}}</td>
-                    <td>{{journal.description}} </td>
-                    <td> {{journal.user.firstname}} {{journal.user.lastname}}</td>
-                    <td nowrap>
+                    <td class="col-md-3">{{journal.name}}</td>
+                    <td class="col-md-5">{{journal.description}} </td>
+                    <td class="col-md-2"> {{journal.user.firstname}} {{journal.user.lastname}}</td>
+                    <td nowrap class="col-md-1">
                           <div *ngIf="journal.subscription ==true">
                             <button  (click)="subscribe($event, journal)" type="button" class="btn btn-success btn-xs ">
                                 <span class="glyphicon glyphicon-ok"> Subscribed</span>
