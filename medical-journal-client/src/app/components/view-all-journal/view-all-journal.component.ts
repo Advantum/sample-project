@@ -94,11 +94,11 @@ constructor (private journalService: JournalService, private userService: UserSe
       console.log("Subscription: ", subscription);
 
       if(subscription.subscription){
-        alert("Subcribed");
+        alert("UnSubcribed");
         //post to update user with journal
       }else{
         //post to remove journal from the list
-        alert("UnSubcribed")
+        alert("Subcribed")
 
       }
 
