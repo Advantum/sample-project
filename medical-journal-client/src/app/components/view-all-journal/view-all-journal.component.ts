@@ -90,11 +90,26 @@ constructor (private journalService: JournalService, private userService: UserSe
       }
 
     subscribe(event, subscription){
+
       console.log("Subscription: ", subscription);
+
       if(subscription.subscription){
+        alert("Subcribed");
         //post to update user with journal
       }else{
         //post to remove journal from the list
+        alert("UnSubcribed")
+
       }
+
+      for (var journal in this.journals) // for acts as a foreach
+        {
+
+            if(this.journals[journal].id ==subscription.id){
+              this.journals[journal].subscription = subscription.subscription; //Default
+              console.log("Update Journal" + subscription.id);
+            }
+
+        }
     }
 }
