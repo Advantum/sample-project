@@ -16,13 +16,15 @@ import { UserService } from '../../services/user.service';
 
 @Injectable()
 export class ViewAllJournalComponent implements OnInit {
-  //journals = [];
-  //  subscribe = true;
+
+/***** MOCK DATA *********/
+//journals = [];
+//  subscribe = true;
   mockUser = [{
          "id": 1,
          "firstname": "Tim",
          "lastname": "Doe",
-         "subscriptions": [ 2, 1 , 0]
+         "subscriptions": [ 2, 1 , 8]
        }];
     journals = [
       {
@@ -63,38 +65,18 @@ constructor (private journalService: JournalService, private userService: UserSe
 
   ngOnInit() {
 
-    // this.journals.forEach(function(journal) {
-    //     console.log(journal);
-    //     console.log(this.mockUser);
-    //
-    //     // for (let i = 0; i < this.tempUser.subscriptions.length; i++) {
-    //     //     if(this.tempUser.subscriptions[i]==journal.id){
-    //     //       journal.subscription = true;
-    //     //       console.log("Journal found: "+ this.tempUser.subscriptions[i] );
-    //     //     }
-    //     // }
-    // });
-
-    for (var journal in this.journals) // for acts as a foreach
+      //Map Journals to show which Journals the User Subscibe to.
+      for (var journal in this.journals) // for acts as a foreach
         {
-            // console.log(this.journals[journal]);
+            this.journals[journal].subscription = false;
 
-            for (var subscription in this.mockUser[0].subscriptions) {
-              console.log("journal:", this.journals[journal].id);
-              console.log("subscription:", subscription)
-              // if(this.journals[journal].id == subscription){
-              //   journal.subscription = true;
-              //   console.log("Journal found: "+ subscription );
-              // }
+            if(this.mockUser[0].subscriptions.indexOf(this.journals[journal].id)!== -1){
+              this.journals[journal].subscription = true;
+              console.log("Found:" + this.journals[journal].id);
+
             }// for acts as a foreach
 
         }
-            // for (let i = 0; i < this.mockUser[0].subscriptions.length; i++) {
-            //        if(this.mockUser[0].subscriptions[i]==journal.id){
-            //          journal.subscription = true;
-            //          console.log("Journal found: "+ this.mockUser[0].subscriptions[i] );
-            //        }
-            //    }
 
     //Retrieve all Journals
       // this.journalService.getAllJournals()
@@ -106,8 +88,6 @@ constructor (private journalService: JournalService, private userService: UserSe
       //     });
       }
 
-    // subscribed(){
-    //   this.subscribe = !this.subscribe;
-    //
-    // }
+    subscribed(){
+    }
 }
